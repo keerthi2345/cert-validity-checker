@@ -1,0 +1,6 @@
+{
+  "name": "Student Document Authenticity Verification System",
+  "description": "Comprehensive document verification platform featuring Student upload with live OCR & forensic status, Verifier review queue with interactive anomaly highlighting, Admin analytics & rule policy, and detailed multi-layer forensic analysis reports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

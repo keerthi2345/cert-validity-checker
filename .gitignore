@@ -1,0 +1,29 @@
+# Environment / secrets
+.env
+backend/.env
+*.env
+!.env.example
+
+# Python
+backend/venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Uploaded documents
+backend/uploads/
+uploads/
+
+# Node
+node_modules/
+dist/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
