@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+outputs/
+ocr_results/
+final_results/
+classification_results/
+temp_images/
+sample_docs/
+*.jpg
+*.png
+*.pdf
+.DS_Store
