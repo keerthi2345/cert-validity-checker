@@ -1,0 +1,59 @@
+{
+  "doc_type": "SSC_MARKS_MEMO",
+  "confidence": 0.5,
+  "raw_score": 6,
+  "matched_keywords": [
+    {
+      "pattern": "\\bssc\\b",
+      "weight": 3
+    },
+    {
+      "pattern": "general\\s+science",
+      "weight": 1
+    },
+    {
+      "pattern": "social\\s+studies",
+      "weight": 1
+    },
+    {
+      "pattern": "second\\s+language",
+      "weight": 1
+    }
+  ],
+  "all_scores": {
+    "SSC_MARKS_MEMO": {
+      "score": 6,
+      "matched_keywords": [
+        {
+          "pattern": "\\bssc\\b",
+          "weight": 3
+        },
+        {
+          "pattern": "general\\s+science",
+          "weight": 1
+        },
+        {
+          "pattern": "social\\s+studies",
+          "weight": 1
+        },
+        {
+          "pattern": "second\\s+language",
+          "weight": 1
+        }
+      ]
+    },
+    "INTER_MARKS_MEMO": {
+      "score": 2,
+      "matched_keywords": [
+        {
+          "pattern": "grand\\s+total",
+          "weight": 2
+        }
+      ]
+    },
+    "SEMESTER_RESULT": {
+      "score": 0,
+      "matched_keywords": []
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "doc_type": "INTER_MARKS_MEMO",
+  "classification": {
+    "doc_type": "INTER_MARKS_MEMO",
+    "confidence": 1.0,
+    "raw_score": 16,
+    "matched_keywords": [
+      {
+        "pattern": "board\\s+of\\s+intermediate\\s+education",
+        "weight": 5
+      },
+      {
+        "pattern": "intermediate\\s+public\\s+examination",
+        "weight": 4
+      },
+      {
+        "pattern": "intermediate\\s+education",
+        "weight": 3
+      },
+      {
+        "pattern": "second\\s+year",
+        "weight": 2
+      },
+      {
+        "pattern": "grand\\s+total",
+        "weight": 2
+      }
+    ],
+    "all_scores": {
+      "SSC_MARKS_MEMO": {
+        "score": 10,
+        "matched_keywords": [
+          {
+            "pattern": "secondary\\s+school\\s+certificate",
+            "weight": 4
+          },
+          {
+            "pattern": "\\bssc\\b",
+            "weight": 3
+          },
+          {
+            "pattern": "memorandum\\s+of\\s+marks",
+            "weight": 3
+          }
+        ]
+      },
+      "INTER_MARKS_MEMO": {
+        "score": 16,
+        "matched_keywords": [
+          {
+            "pattern": "board\\s+of\\s+intermediate\\s+education",
+            "weight": 5
+          },
+          {
+            "pattern": "intermediate\\s+public\\s+examination",
+            "weight": 4
+          },
+          {
+            "pattern": "intermediate\\s+education",
+            "weight": 3
+          },
+          {
+            "pattern": "second\\s+year",
+            "weight": 2
+          },
+          {
+            "pattern": "grand\\s+total",
+            "weight": 2
+          }
+        ]
+      },
+      "SEMESTER_RESULT": {
+        "score": 4,
+        "matched_keywords": [
+          {
+            "pattern": "controller\\s+of\\s+examinations",
+            "weight": 4
+          }
+        ]
+      }
+    }
+  },
+  "extracted_fields": {
+    "regd_number": "2302210616",
+    "name": "AKULA HARIKA",
+    "father_name": "AKULA YENKATA GIRI BABU",
+    "mother_name": "AKULA SUBHA LAKSHMI",
+    "grand_total": "956",
+    "result": "A GRADE",
+    "exam_date": "26-04-2023",
+    "marks_table_status": "CROPPED_AND_OCR_READ",
+    "crop_top": 577,
+    "crop_bottom": 780,
+    "raw_table_text": "DISTYCOLLEGE = 92/2083, MEDIUM = ENGLISH RH CODE ee ea\nPRR eS\n\n[wae MS 100 075 075 060 060,\n\nYEAR | ween) gge'p s 2 on 60*P spe\n\n304 sl eee CO 075 075 060, 060,\n\njena. _\u2014 030 030\n\n[PATTEM Ts secune OM \"\n\n[eranoTorAaL 956 GRANDTOTAL: (nwo) @NINE**FIVE***SIX*\n\nSNES ke\n",
+    "year1_max_marks_row": null,
+    "year1_secured_row": null,
+    "year2_max_marks_row": null,
+    "year2_secured_row": null
+  },
+  "logic_check_result": {
+    "required_fields_found": 5,
+    "required_fields_expected": 5,
+    "missing_required_fields": [],
+    "grand_total_in_valid_range": true,
+    "marks_table_status": "CROPPED_AND_OCR_READ",
+    "marks_table_recovered": true,
+    "overall_status": "PASS",
+    "note": "The Intermediate document was classified successfully. Core identity fields, grand total, result, examination date, and the marks-table OCR region were recovered successfully."
+  }
+}

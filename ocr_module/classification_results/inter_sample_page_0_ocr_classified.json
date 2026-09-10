@@ -1,0 +1,80 @@
+{
+  "doc_type": "INTER_MARKS_MEMO",
+  "confidence": 1.0,
+  "raw_score": 16,
+  "matched_keywords": [
+    {
+      "pattern": "board\\s+of\\s+intermediate\\s+education",
+      "weight": 5
+    },
+    {
+      "pattern": "intermediate\\s+public\\s+examination",
+      "weight": 4
+    },
+    {
+      "pattern": "intermediate\\s+education",
+      "weight": 3
+    },
+    {
+      "pattern": "second\\s+year",
+      "weight": 2
+    },
+    {
+      "pattern": "grand\\s+total",
+      "weight": 2
+    }
+  ],
+  "all_scores": {
+    "SSC_MARKS_MEMO": {
+      "score": 10,
+      "matched_keywords": [
+        {
+          "pattern": "secondary\\s+school\\s+certificate",
+          "weight": 4
+        },
+        {
+          "pattern": "\\bssc\\b",
+          "weight": 3
+        },
+        {
+          "pattern": "memorandum\\s+of\\s+marks",
+          "weight": 3
+        }
+      ]
+    },
+    "INTER_MARKS_MEMO": {
+      "score": 16,
+      "matched_keywords": [
+        {
+          "pattern": "board\\s+of\\s+intermediate\\s+education",
+          "weight": 5
+        },
+        {
+          "pattern": "intermediate\\s+public\\s+examination",
+          "weight": 4
+        },
+        {
+          "pattern": "intermediate\\s+education",
+          "weight": 3
+        },
+        {
+          "pattern": "second\\s+year",
+          "weight": 2
+        },
+        {
+          "pattern": "grand\\s+total",
+          "weight": 2
+        }
+      ]
+    },
+    "SEMESTER_RESULT": {
+      "score": 4,
+      "matched_keywords": [
+        {
+          "pattern": "controller\\s+of\\s+examinations",
+          "weight": 4
+        }
+      ]
+    }
+  }
+}

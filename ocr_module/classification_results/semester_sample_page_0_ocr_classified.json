@@ -1,0 +1,99 @@
+{
+  "doc_type": "SEMESTER_RESULT",
+  "confidence": 1.0,
+  "raw_score": 27,
+  "matched_keywords": [
+    {
+      "pattern": "\\bsgpa\\b|s\\.?\\s*g\\.?\\s*p\\.?\\s*a\\.?",
+      "weight": 5
+    },
+    {
+      "pattern": "\\bcgpa\\b|c\\.?\\s*g\\.?\\s*p\\.?\\s*a\\.?",
+      "weight": 5
+    },
+    {
+      "pattern": "controller\\s+of\\s+examinations",
+      "weight": 4
+    },
+    {
+      "pattern": "grade\\s+card",
+      "weight": 4
+    },
+    {
+      "pattern": "semester",
+      "weight": 3
+    },
+    {
+      "pattern": "register\\s*(number|no)",
+      "weight": 2
+    },
+    {
+      "pattern": "credits?",
+      "weight": 2
+    },
+    {
+      "pattern": "b\\.?\\s*tech|bachelor\\s+of\\s+technology",
+      "weight": 1
+    },
+    {
+      "pattern": "university",
+      "weight": 1
+    }
+  ],
+  "all_scores": {
+    "SSC_MARKS_MEMO": {
+      "score": 0,
+      "matched_keywords": []
+    },
+    "INTER_MARKS_MEMO": {
+      "score": 2,
+      "matched_keywords": [
+        {
+          "pattern": "second\\s+year",
+          "weight": 2
+        }
+      ]
+    },
+    "SEMESTER_RESULT": {
+      "score": 27,
+      "matched_keywords": [
+        {
+          "pattern": "\\bsgpa\\b|s\\.?\\s*g\\.?\\s*p\\.?\\s*a\\.?",
+          "weight": 5
+        },
+        {
+          "pattern": "\\bcgpa\\b|c\\.?\\s*g\\.?\\s*p\\.?\\s*a\\.?",
+          "weight": 5
+        },
+        {
+          "pattern": "controller\\s+of\\s+examinations",
+          "weight": 4
+        },
+        {
+          "pattern": "grade\\s+card",
+          "weight": 4
+        },
+        {
+          "pattern": "semester",
+          "weight": 3
+        },
+        {
+          "pattern": "register\\s*(number|no)",
+          "weight": 2
+        },
+        {
+          "pattern": "credits?",
+          "weight": 2
+        },
+        {
+          "pattern": "b\\.?\\s*tech|bachelor\\s+of\\s+technology",
+          "weight": 1
+        },
+        {
+          "pattern": "university",
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

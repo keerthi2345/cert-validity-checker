@@ -1,0 +1,182 @@
+{
+  "doc_type": "SEMESTER_RESULT",
+  "classification": {
+    "doc_type": "SEMESTER_RESULT",
+    "confidence": 1.0,
+    "raw_score": 27,
+    "matched_keywords": [
+      {
+        "pattern": "\\bsgpa\\b|s\\.?\\s*g\\.?\\s*p\\.?\\s*a\\.?",
+        "weight": 5
+      },
+      {
+        "pattern": "\\bcgpa\\b|c\\.?\\s*g\\.?\\s*p\\.?\\s*a\\.?",
+        "weight": 5
+      },
+      {
+        "pattern": "controller\\s+of\\s+examinations",
+        "weight": 4
+      },
+      {
+        "pattern": "grade\\s+card",
+        "weight": 4
+      },
+      {
+        "pattern": "semester",
+        "weight": 3
+      },
+      {
+        "pattern": "register\\s*(number|no)",
+        "weight": 2
+      },
+      {
+        "pattern": "credits?",
+        "weight": 2
+      },
+      {
+        "pattern": "b\\.?\\s*tech|bachelor\\s+of\\s+technology",
+        "weight": 1
+      },
+      {
+        "pattern": "university",
+        "weight": 1
+      }
+    ],
+    "all_scores": {
+      "SSC_MARKS_MEMO": {
+        "score": 0,
+        "matched_keywords": []
+      },
+      "INTER_MARKS_MEMO": {
+        "score": 2,
+        "matched_keywords": [
+          {
+            "pattern": "second\\s+year",
+            "weight": 2
+          }
+        ]
+      },
+      "SEMESTER_RESULT": {
+        "score": 27,
+        "matched_keywords": [
+          {
+            "pattern": "\\bsgpa\\b|s\\.?\\s*g\\.?\\s*p\\.?\\s*a\\.?",
+            "weight": 5
+          },
+          {
+            "pattern": "\\bcgpa\\b|c\\.?\\s*g\\.?\\s*p\\.?\\s*a\\.?",
+            "weight": 5
+          },
+          {
+            "pattern": "controller\\s+of\\s+examinations",
+            "weight": 4
+          },
+          {
+            "pattern": "grade\\s+card",
+            "weight": 4
+          },
+          {
+            "pattern": "semester",
+            "weight": 3
+          },
+          {
+            "pattern": "register\\s*(number|no)",
+            "weight": 2
+          },
+          {
+            "pattern": "credits?",
+            "weight": 2
+          },
+          {
+            "pattern": "b\\.?\\s*tech|bachelor\\s+of\\s+technology",
+            "weight": 1
+          },
+          {
+            "pattern": "university",
+            "weight": 1
+          }
+        ]
+      }
+    }
+  },
+  "extracted_fields": {
+    "university": "JL\nANDHRA UNIVERSITY",
+    "programme": "B.TECH.",
+    "semester": "SECOND",
+    "name": "AKULA HARIKA A",
+    "register_number": "323103210007",
+    "branch": "COMPUTER SCIENCE & ENGINEERING\nY",
+    "subjects": [
+      {
+        "subject": "MICROPROCESSORS 3 A+",
+        "credits": "3",
+        "grade": "A",
+        "grade_points": "27.00"
+      },
+      {
+        "subject": "A DESIGN AND ANALYSIS OF ALGORITHMS 3 A",
+        "credits": "3",
+        "grade": "O",
+        "grade_points": "24.00"
+      },
+      {
+        "subject": "DATABASE MANAGEMENT SYSTEMS 3 AT",
+        "credits": "3",
+        "grade": "A+",
+        "grade_points": "27.00"
+      },
+      {
+        "subject": "FORMAL LANGUAGES AND AUTOMATA THEORY A",
+        "credits": "3",
+        "grade": "A",
+        "grade_points": "24.00"
+      },
+      {
+        "subject": "MANAGERIAL ECONOMICS 3 AT",
+        "credits": "3",
+        "grade": "A",
+        "grade_points": "13.50"
+      },
+      {
+        "subject": "ALGORITHMS LAB THROUGH C++",
+        "credits": null,
+        "grade": "A+",
+        "grade_points": null
+      },
+      {
+        "subject": "DATABASE MANAGEMENT SYSTEMS LAB 15 \u00b0",
+        "credits": null,
+        "grade": "O",
+        "grade_points": "15.00"
+      },
+      {
+        "subject": "A WEB TECHNOLOGIES LAB \u00b0 20.00",
+        "credits": "2",
+        "grade": "A",
+        "grade_points": "20.00"
+      },
+      {
+        "subject": "PROFESSIONAL ETHICS & UNIVERSAL HUMAN VALUES A",
+        "credits": "4",
+        "grade": "O",
+        "grade_points": "0.00"
+      }
+    ],
+    "sgpa": "8.88",
+    "cgpa": "8.68",
+    "gpa_crop_status": "CROPPED_AND_OCR_READ",
+    "gpa_crop_text": "eee eee eee eee i eee a Se i LS i\n\nSEMESTER GRADE POINT AVERAGE (SGPA) : 8.88 i\n\nCUMULATIVE GRADE POINT AVERAGE (CGPA) 8.68 .\nA GRADE POINTS 10 9 8 7 6 5 4 0\n"
+  },
+  "logic_check_result": {
+    "required_fields_found": 4,
+    "required_fields_expected": 4,
+    "missing_required_fields": [],
+    "subjects_found": 9,
+    "subjects_with_complete_data": 7,
+    "total_grade_points_calculated": 135.5,
+    "sgpa_valid": true,
+    "cgpa_valid": true,
+    "overall_status": "PASS",
+    "note": "Semester validation checks OCR extraction consistency. The final authenticity decision should also use forensic signals from the verification/scoring module."
+  }
+}

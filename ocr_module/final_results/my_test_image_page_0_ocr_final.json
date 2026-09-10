@@ -1,0 +1,92 @@
+{
+  "doc_type": "SSC_MARKS_MEMO",
+  "classification": {
+    "doc_type": "SSC_MARKS_MEMO",
+    "confidence": 0.5,
+    "raw_score": 6,
+    "matched_keywords": [
+      {
+        "pattern": "\\bssc\\b",
+        "weight": 3
+      },
+      {
+        "pattern": "general\\s+science",
+        "weight": 1
+      },
+      {
+        "pattern": "social\\s+studies",
+        "weight": 1
+      },
+      {
+        "pattern": "second\\s+language",
+        "weight": 1
+      }
+    ],
+    "all_scores": {
+      "SSC_MARKS_MEMO": {
+        "score": 6,
+        "matched_keywords": [
+          {
+            "pattern": "\\bssc\\b",
+            "weight": 3
+          },
+          {
+            "pattern": "general\\s+science",
+            "weight": 1
+          },
+          {
+            "pattern": "social\\s+studies",
+            "weight": 1
+          },
+          {
+            "pattern": "second\\s+language",
+            "weight": 1
+          }
+        ]
+      },
+      "INTER_MARKS_MEMO": {
+        "score": 2,
+        "matched_keywords": [
+          {
+            "pattern": "grand\\s+total",
+            "weight": 2
+          }
+        ]
+      },
+      "SEMESTER_RESULT": {
+        "score": 0,
+        "matched_keywords": []
+      }
+    }
+  },
+  "extracted_fields": {
+    "name": "AKULA HARIKA",
+    "father_name": "AKULA VENKATA GIRI BABU EO",
+    "mother_name": "AKULA SUBHA",
+    "roll_no": "2138106044",
+    "date_of_birth": "27/07/2006",
+    "exam_year": "2021",
+    "first_language_marks": "94",
+    "second_language_marks": "88",
+    "third_language_marks": "92",
+    "mathematics_marks": "98",
+    "general_science_marks": "95",
+    "social_studies_marks": "96",
+    "grand_total": "563"
+  },
+  "logic_check_result": {
+    "required_fields_found": 5,
+    "required_fields_expected": 5,
+    "missing_required_fields": [],
+    "age_at_exam": 15,
+    "age_at_exam_valid": true,
+    "marks_fields_found": 6,
+    "marks_fields_expected": 6,
+    "calculated_percentage": 93.83,
+    "grand_total_in_valid_range": true,
+    "marks_sum_calculated": 563,
+    "marks_sum_matches_total": true,
+    "overall_status": "PASS",
+    "note": "Validation checks document-data consistency only. They do not by themselves prove that a document is authentic."
+  }
+}

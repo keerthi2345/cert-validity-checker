@@ -1,0 +1,2393 @@
+{
+  "source_image": "outputs\\semester_sample_page_0.png",
+  "raw_text": "Plein dk Petit Jl i, #8 uty) i, 1 tt, at ih Me TB ss rr, LF 1;\nANDHRA UNIVERSITY 0875448 a\n| GOH DE So? DONS |\nre Accredited by NAAC with A++ Grade with Score : 3.74 : ISO 9001 : 2015 Certified o\n- OFFICIAL MEMORANDUM NO. E.V(SUP)/2025 ; PROVISIONAL GRADE CARD; Le\n\\ B.TECH. SECOND YEAR SECOND SEMESTER EXAMINATION- AUGUST-2025 a\nFa\ne NAME OF THE CANDIDATE : AKULA HARIKA a\ni THE FOLLOWING MARKS / GRADES WERE SECURED BY THE CANDIDATE REGISTER NUMBER: 323103210007 i\n’ a\nSUBJECTS SUBJECT GRADE ene A\n“ CREDITS OBTAINED OBTAINED 0\nz\n: BRANCH NAME : COMPUTER SCIENCE & ENGINEERING Fa\ny MICROPROCESSORS 3 A+ 27.00 }\na DESIGN AND ANALYSIS OF ALGORITHMS 3 A 24.00 A\no i\ny DATABASE MANAGEMENT SYSTEMS 3 At 27.00 W\ni FORMAL LANGUAGES AND AUTOMATA THEORY 3 A 24.00 8\ny MANAGERIAL ECONOMICS 3 At 27.00 ‘\nfa ALGORITHMS LAB THROUGH C++ 15 At 13.50 A\ny DATABASE MANAGEMENT SYSTEMS LAB 15 ° 15.00 YW\ni Bia\nA WEB TECHNOLOGIES LAB 2 ° 20.00 a\ngo\n4 PROFESSIONAL ETHICS & UNIVERSAL HUMAN VALUES 0 A 0.00 e|\ni\na é\nie oo a nn kes oo aa *\nFi\n\nSob\n\nSEMESTER GRADE POINT AVERAGE (SGPA)\nCUMULATIVE GRADE POINT AVERAGE (CGPA)\n\nPASSING MINIMUM\n\n(1) MINIMUM OF ‘P' GRADE IN THEORY , MINIMUM OF 'C’ GRADE IN PRACTICALS AND\n(2) THE MINIMUM OF S.G.P.A REQUIRED FOR PASS IS 5.0 IN EACH SEMESTER.\nNote: THE UNIVERSITY RESERVES THE RIGHT TO CANCEL/REVISE THE RESULT AND CERTIFICATE, IF ANY DISCREPANCY IS FOU\n\nt\n|\n\nVou. |\nAddl. Controller of Examinations\n\nVisakhapatnam\nDate :48-10-2025\n\nSe at\n\nTE Pee Pat Peet hp DoT kD Sitter ep pattie ine OK He Ng aurrem at he Goan SP ore\n\n",
+  "reconstructed_text": "ih Me TB ss LF 1;\nPlein dk Petit i, tt, at rr,\n#8 uty) i, 1\nJl\nANDHRA UNIVERSITY\na\n0875448\nDONS\nGOH DE So? |\n|\nre Accredited by NAAC with A++ Grade with Score 3.74 ISO 9001 2015 Certified o\n: : :\nGRADE CARD; Le\n\\ OFFICIAL MEMORANDUM NO. E.V(SUP)/2025 ; PROVISIONAL\n-\nB.TECH. SECOND YEAR SECOND SEMESTER EXAMINATION- AUGUST-2025\na\nFa\ne : AKULA HARIKA a\nNAME OF THE CANDIDATE\ni i\n323103210007\nTHE FOLLOWING MARKS / GRADES WERE SECURED BY THE CANDIDATE REGISTER NUMBER:\n’ a\nGRADE ene A\nSUBJECTS SUBJECT\nCREDITS OBTAINED\nOBTAINED 0\n“\nz\nFa\nBRANCH NAME : COMPUTER SCIENCE & ENGINEERING\ny : }\nMICROPROCESSORS 3 A+ 27.00\nA\na DESIGN AND ANALYSIS OF ALGORITHMS 3 A 24.00\no i\ny W\nDATABASE MANAGEMENT SYSTEMS 3 At 27.00\ni 8\nFORMAL LANGUAGES AND AUTOMATA THEORY A 24.00\n3\ny ‘\nMANAGERIAL ECONOMICS 3 At 27.00\nfa 13.50 A\nALGORITHMS LAB THROUGH C++ At\n15\ny YW\nDATABASE MANAGEMENT SYSTEMS LAB 15 ° 15.00\ni Bia\nA WEB TECHNOLOGIES LAB ° 20.00 a\n2\ngo e|\n4 PROFESSIONAL ETHICS & UNIVERSAL HUMAN VALUES A 0.00\n0\na i é\nie *\noo a nn kes oo aa\nFi\nSob\nSEMESTER GRADE POINT AVERAGE (SGPA)\nCUMULATIVE GRADE POINT AVERAGE (CGPA)\nPASSING MINIMUM\n(1) MINIMUM OF ‘P' GRADE IN THEORY MINIMUM OF 'C’ GRADE IN PRACTICALS AND\n,\n(2) THE MINIMUM OF S.G.P.A REQUIRED FOR PASS IS 5.0 IN EACH SEMESTER.\nNote: THE UNIVERSITY RESERVES THE RIGHT TO CANCEL/REVISE THE RESULT AND CERTIFICATE, IF\nANY DISCREPANCY IS FOU\n| t\nVou. |\nVisakhapatnam\nAddl. Controller\nDate :48-10-2025 of Examinations\nat Pee Pat Peet hp DoT kD Sitter ep OK He he\nSe Ng at\nTE pattie ine aurrem Goan SP ore",
+  "words": [
+    {
+      "text": "Plein",
+      "confidence": 13.0,
+      "x": 182,
+      "y": 58,
+      "width": 411,
+      "height": 31
+    },
+    {
+      "text": "dk",
+      "confidence": 2.0,
+      "x": 360,
+      "y": 54,
+      "width": 12,
+      "height": 43
+    },
+    {
+      "text": "Petit",
+      "confidence": 40.0,
+      "x": 385,
+      "y": 58,
+      "width": 159,
+      "height": 31
+    },
+    {
+      "text": "Jl",
+      "confidence": 13.0,
+      "x": 616,
+      "y": 77,
+      "width": 1,
+      "height": 3
+    },
+    {
+      "text": "i,",
+      "confidence": 8.0,
+      "x": 686,
+      "y": 58,
+      "width": 27,
+      "height": 41
+    },
+    {
+      "text": "#8",
+      "confidence": 12.0,
+      "x": 723,
+      "y": 63,
+      "width": 42,
+      "height": 27
+    },
+    {
+      "text": "uty)",
+      "confidence": 35.0,
+      "x": 858,
+      "y": 62,
+      "width": 75,
+      "height": 27
+    },
+    {
+      "text": "i,",
+      "confidence": 13.0,
+      "x": 1031,
+      "y": 62,
+      "width": 35,
+      "height": 27
+    },
+    {
+      "text": "1",
+      "confidence": 24.0,
+      "x": 1207,
+      "y": 59,
+      "width": 16,
+      "height": 27
+    },
+    {
+      "text": "tt,",
+      "confidence": 15.0,
+      "x": 1377,
+      "y": 48,
+      "width": 37,
+      "height": 42
+    },
+    {
+      "text": "at",
+      "confidence": 25.0,
+      "x": 1550,
+      "y": 48,
+      "width": 21,
+      "height": 28
+    },
+    {
+      "text": "ih",
+      "confidence": 39.0,
+      "x": 1726,
+      "y": 42,
+      "width": 21,
+      "height": 28
+    },
+    {
+      "text": "Me",
+      "confidence": 56.0,
+      "x": 1762,
+      "y": 42,
+      "width": 19,
+      "height": 28
+    },
+    {
+      "text": "TB",
+      "confidence": 36.0,
+      "x": 1788,
+      "y": 41,
+      "width": 15,
+      "height": 28
+    },
+    {
+      "text": "ss",
+      "confidence": 36.0,
+      "x": 1817,
+      "y": 33,
+      "width": 23,
+      "height": 44
+    },
+    {
+      "text": "rr,",
+      "confidence": 24.0,
+      "x": 1846,
+      "y": 56,
+      "width": 21,
+      "height": 2
+    },
+    {
+      "text": "LF",
+      "confidence": 18.0,
+      "x": 1953,
+      "y": 37,
+      "width": 26,
+      "height": 30
+    },
+    {
+      "text": "1;",
+      "confidence": 0.0,
+      "x": 2004,
+      "y": 42,
+      "width": 50,
+      "height": 75
+    },
+    {
+      "text": "ANDHRA",
+      "confidence": 95.0,
+      "x": 639,
+      "y": 102,
+      "width": 328,
+      "height": 77
+    },
+    {
+      "text": "UNIVERSITY",
+      "confidence": 93.0,
+      "x": 1017,
+      "y": 102,
+      "width": 489,
+      "height": 77
+    },
+    {
+      "text": "0875448",
+      "confidence": 81.0,
+      "x": 1632,
+      "y": 130,
+      "width": 256,
+      "height": 58
+    },
+    {
+      "text": "a",
+      "confidence": 10.0,
+      "x": 2023,
+      "y": 114,
+      "width": 32,
+      "height": 45
+    },
+    {
+      "text": "|",
+      "confidence": 55.0,
+      "x": 93,
+      "y": 231,
+      "width": 2,
+      "height": 4
+    },
+    {
+      "text": "GOH",
+      "confidence": 63.0,
+      "x": 747,
+      "y": 205,
+      "width": 154,
+      "height": 71
+    },
+    {
+      "text": "DE",
+      "confidence": 20.0,
+      "x": 933,
+      "y": 205,
+      "width": 79,
+      "height": 78
+    },
+    {
+      "text": "So?",
+      "confidence": 20.0,
+      "x": 1041,
+      "y": 204,
+      "width": 118,
+      "height": 79
+    },
+    {
+      "text": "DONS",
+      "confidence": 72.0,
+      "x": 1178,
+      "y": 187,
+      "width": 214,
+      "height": 81
+    },
+    {
+      "text": "|",
+      "confidence": 53.0,
+      "x": 2025,
+      "y": 208,
+      "width": 33,
+      "height": 91
+    },
+    {
+      "text": "re",
+      "confidence": 36.0,
+      "x": 83,
+      "y": 291,
+      "width": 37,
+      "height": 71
+    },
+    {
+      "text": "Accredited",
+      "confidence": 96.0,
+      "x": 536,
+      "y": 297,
+      "width": 139,
+      "height": 21
+    },
+    {
+      "text": "by",
+      "confidence": 93.0,
+      "x": 687,
+      "y": 299,
+      "width": 30,
+      "height": 25
+    },
+    {
+      "text": "NAAC",
+      "confidence": 90.0,
+      "x": 729,
+      "y": 298,
+      "width": 76,
+      "height": 21
+    },
+    {
+      "text": "with",
+      "confidence": 93.0,
+      "x": 817,
+      "y": 299,
+      "width": 52,
+      "height": 20
+    },
+    {
+      "text": "A++",
+      "confidence": 72.0,
+      "x": 882,
+      "y": 299,
+      "width": 49,
+      "height": 21
+    },
+    {
+      "text": "Grade",
+      "confidence": 96.0,
+      "x": 943,
+      "y": 300,
+      "width": 77,
+      "height": 21
+    },
+    {
+      "text": "with",
+      "confidence": 96.0,
+      "x": 1031,
+      "y": 301,
+      "width": 52,
+      "height": 21
+    },
+    {
+      "text": "Score",
+      "confidence": 93.0,
+      "x": 1095,
+      "y": 301,
+      "width": 74,
+      "height": 21
+    },
+    {
+      "text": ":",
+      "confidence": 87.0,
+      "x": 1182,
+      "y": 306,
+      "width": 5,
+      "height": 14
+    },
+    {
+      "text": "3.74",
+      "confidence": 85.0,
+      "x": 1199,
+      "y": 300,
+      "width": 51,
+      "height": 21
+    },
+    {
+      "text": ":",
+      "confidence": 85.0,
+      "x": 1262,
+      "y": 306,
+      "width": 5,
+      "height": 14
+    },
+    {
+      "text": "ISO",
+      "confidence": 93.0,
+      "x": 1280,
+      "y": 299,
+      "width": 45,
+      "height": 22
+    },
+    {
+      "text": "9001",
+      "confidence": 90.0,
+      "x": 1336,
+      "y": 299,
+      "width": 56,
+      "height": 21
+    },
+    {
+      "text": ":",
+      "confidence": 90.0,
+      "x": 1408,
+      "y": 304,
+      "width": 5,
+      "height": 15
+    },
+    {
+      "text": "2015",
+      "confidence": 96.0,
+      "x": 1425,
+      "y": 297,
+      "width": 60,
+      "height": 22
+    },
+    {
+      "text": "Certified",
+      "confidence": 93.0,
+      "x": 1496,
+      "y": 292,
+      "width": 110,
+      "height": 25
+    },
+    {
+      "text": "o",
+      "confidence": 12.0,
+      "x": 2026,
+      "y": 295,
+      "width": 33,
+      "height": 48
+    },
+    {
+      "text": "-",
+      "confidence": 0.0,
+      "x": 100,
+      "y": 361,
+      "width": 6,
+      "height": 3
+    },
+    {
+      "text": "OFFICIAL",
+      "confidence": 94.0,
+      "x": 439,
+      "y": 347,
+      "width": 160,
+      "height": 27
+    },
+    {
+      "text": "MEMORANDUM",
+      "confidence": 95.0,
+      "x": 610,
+      "y": 348,
+      "width": 260,
+      "height": 27
+    },
+    {
+      "text": "NO.",
+      "confidence": 95.0,
+      "x": 883,
+      "y": 349,
+      "width": 58,
+      "height": 26
+    },
+    {
+      "text": "E.V(SUP)/2025",
+      "confidence": 89.0,
+      "x": 955,
+      "y": 350,
+      "width": 235,
+      "height": 34
+    },
+    {
+      "text": ";",
+      "confidence": 92.0,
+      "x": 1203,
+      "y": 357,
+      "width": 7,
+      "height": 24
+    },
+    {
+      "text": "PROVISIONAL",
+      "confidence": 92.0,
+      "x": 1224,
+      "y": 348,
+      "width": 238,
+      "height": 28
+    },
+    {
+      "text": "GRADE",
+      "confidence": 96.0,
+      "x": 1474,
+      "y": 344,
+      "width": 124,
+      "height": 29
+    },
+    {
+      "text": "CARD;",
+      "confidence": 87.0,
+      "x": 1610,
+      "y": 341,
+      "width": 110,
+      "height": 31
+    },
+    {
+      "text": "Le",
+      "confidence": 3.0,
+      "x": 2022,
+      "y": 334,
+      "width": 20,
+      "height": 60
+    },
+    {
+      "text": "\\",
+      "confidence": 29.0,
+      "x": 82,
+      "y": 354,
+      "width": 33,
+      "height": 140
+    },
+    {
+      "text": "B.TECH.",
+      "confidence": 95.0,
+      "x": 447,
+      "y": 383,
+      "width": 136,
+      "height": 27
+    },
+    {
+      "text": "SECOND",
+      "confidence": 95.0,
+      "x": 596,
+      "y": 384,
+      "width": 147,
+      "height": 26
+    },
+    {
+      "text": "YEAR",
+      "confidence": 95.0,
+      "x": 755,
+      "y": 384,
+      "width": 94,
+      "height": 26
+    },
+    {
+      "text": "SECOND",
+      "confidence": 96.0,
+      "x": 862,
+      "y": 385,
+      "width": 146,
+      "height": 26
+    },
+    {
+      "text": "SEMESTER",
+      "confidence": 93.0,
+      "x": 1021,
+      "y": 387,
+      "width": 189,
+      "height": 26
+    },
+    {
+      "text": "EXAMINATION-",
+      "confidence": 84.0,
+      "x": 1222,
+      "y": 384,
+      "width": 256,
+      "height": 28
+    },
+    {
+      "text": "AUGUST-2025",
+      "confidence": 90.0,
+      "x": 1487,
+      "y": 378,
+      "width": 238,
+      "height": 32
+    },
+    {
+      "text": "a",
+      "confidence": 25.0,
+      "x": 2032,
+      "y": 391,
+      "width": 27,
+      "height": 38
+    },
+    {
+      "text": "Fa",
+      "confidence": 31.0,
+      "x": 2029,
+      "y": 431,
+      "width": 33,
+      "height": 51
+    },
+    {
+      "text": "e",
+      "confidence": 0.0,
+      "x": 82,
+      "y": 485,
+      "width": 32,
+      "height": 51
+    },
+    {
+      "text": "NAME",
+      "confidence": 96.0,
+      "x": 135,
+      "y": 492,
+      "width": 79,
+      "height": 20
+    },
+    {
+      "text": "OF",
+      "confidence": 96.0,
+      "x": 229,
+      "y": 492,
+      "width": 37,
+      "height": 20
+    },
+    {
+      "text": "THE",
+      "confidence": 96.0,
+      "x": 279,
+      "y": 492,
+      "width": 54,
+      "height": 21
+    },
+    {
+      "text": "CANDIDATE",
+      "confidence": 39.0,
+      "x": 346,
+      "y": 492,
+      "width": 163,
+      "height": 22
+    },
+    {
+      "text": ":",
+      "confidence": 50.0,
+      "x": 529,
+      "y": 477,
+      "width": 20,
+      "height": 46
+    },
+    {
+      "text": "AKULA",
+      "confidence": 91.0,
+      "x": 549,
+      "y": 481,
+      "width": 146,
+      "height": 31
+    },
+    {
+      "text": "HARIKA",
+      "confidence": 96.0,
+      "x": 710,
+      "y": 481,
+      "width": 160,
+      "height": 31
+    },
+    {
+      "text": "a",
+      "confidence": 13.0,
+      "x": 2029,
+      "y": 478,
+      "width": 33,
+      "height": 48
+    },
+    {
+      "text": "i",
+      "confidence": 74.0,
+      "x": 77,
+      "y": 533,
+      "width": 34,
+      "height": 141
+    },
+    {
+      "text": "THE",
+      "confidence": 96.0,
+      "x": 132,
+      "y": 563,
+      "width": 55,
+      "height": 21
+    },
+    {
+      "text": "FOLLOWING",
+      "confidence": 96.0,
+      "x": 201,
+      "y": 563,
+      "width": 169,
+      "height": 22
+    },
+    {
+      "text": "MARKS",
+      "confidence": 93.0,
+      "x": 384,
+      "y": 564,
+      "width": 101,
+      "height": 21
+    },
+    {
+      "text": "/",
+      "confidence": 93.0,
+      "x": 497,
+      "y": 565,
+      "width": 8,
+      "height": 19
+    },
+    {
+      "text": "GRADES",
+      "confidence": 96.0,
+      "x": 517,
+      "y": 564,
+      "width": 117,
+      "height": 21
+    },
+    {
+      "text": "WERE",
+      "confidence": 95.0,
+      "x": 647,
+      "y": 564,
+      "width": 82,
+      "height": 21
+    },
+    {
+      "text": "SECURED",
+      "confidence": 96.0,
+      "x": 743,
+      "y": 564,
+      "width": 135,
+      "height": 22
+    },
+    {
+      "text": "BY",
+      "confidence": 92.0,
+      "x": 891,
+      "y": 565,
+      "width": 37,
+      "height": 21
+    },
+    {
+      "text": "THE",
+      "confidence": 96.0,
+      "x": 941,
+      "y": 566,
+      "width": 54,
+      "height": 21
+    },
+    {
+      "text": "CANDIDATE",
+      "confidence": 96.0,
+      "x": 1007,
+      "y": 566,
+      "width": 163,
+      "height": 24
+    },
+    {
+      "text": "REGISTER",
+      "confidence": 78.0,
+      "x": 1401,
+      "y": 568,
+      "width": 143,
+      "height": 22
+    },
+    {
+      "text": "NUMBER:",
+      "confidence": 96.0,
+      "x": 1559,
+      "y": 565,
+      "width": 132,
+      "height": 24
+    },
+    {
+      "text": "323103210007",
+      "confidence": 96.0,
+      "x": 1711,
+      "y": 535,
+      "width": 284,
+      "height": 40
+    },
+    {
+      "text": "i",
+      "confidence": 51.0,
+      "x": 2029,
+      "y": 523,
+      "width": 33,
+      "height": 105
+    },
+    {
+      "text": "’",
+      "confidence": 0.0,
+      "x": 0,
+      "y": 597,
+      "width": 9,
+      "height": 14
+    },
+    {
+      "text": "a",
+      "confidence": 15.0,
+      "x": 2034,
+      "y": 607,
+      "width": 4,
+      "height": 9
+    },
+    {
+      "text": "SUBJECTS",
+      "confidence": 96.0,
+      "x": 528,
+      "y": 657,
+      "width": 163,
+      "height": 25
+    },
+    {
+      "text": "SUBJECT",
+      "confidence": 95.0,
+      "x": 1281,
+      "y": 661,
+      "width": 142,
+      "height": 25
+    },
+    {
+      "text": "GRADE",
+      "confidence": 96.0,
+      "x": 1560,
+      "y": 635,
+      "width": 111,
+      "height": 60
+    },
+    {
+      "text": "ene",
+      "confidence": 21.0,
+      "x": 1824,
+      "y": 636,
+      "width": 118,
+      "height": 67
+    },
+    {
+      "text": "A",
+      "confidence": 26.0,
+      "x": 2031,
+      "y": 628,
+      "width": 33,
+      "height": 86
+    },
+    {
+      "text": "“",
+      "confidence": 0.0,
+      "x": 88,
+      "y": 721,
+      "width": 4,
+      "height": 1
+    },
+    {
+      "text": "CREDITS",
+      "confidence": 95.0,
+      "x": 1283,
+      "y": 700,
+      "width": 137,
+      "height": 25
+    },
+    {
+      "text": "OBTAINED",
+      "confidence": 95.0,
+      "x": 1536,
+      "y": 696,
+      "width": 160,
+      "height": 27
+    },
+    {
+      "text": "OBTAINED",
+      "confidence": 96.0,
+      "x": 1802,
+      "y": 714,
+      "width": 163,
+      "height": 28
+    },
+    {
+      "text": "0",
+      "confidence": 17.0,
+      "x": 2031,
+      "y": 709,
+      "width": 34,
+      "height": 52
+    },
+    {
+      "text": "z",
+      "confidence": 0.0,
+      "x": 2035,
+      "y": 764,
+      "width": 26,
+      "height": 40
+    },
+    {
+      "text": ":",
+      "confidence": 3.0,
+      "x": 83,
+      "y": 848,
+      "width": 6,
+      "height": 2
+    },
+    {
+      "text": "BRANCH",
+      "confidence": 96.0,
+      "x": 160,
+      "y": 817,
+      "width": 151,
+      "height": 27
+    },
+    {
+      "text": "NAME",
+      "confidence": 92.0,
+      "x": 324,
+      "y": 817,
+      "width": 101,
+      "height": 27
+    },
+    {
+      "text": ":",
+      "confidence": 91.0,
+      "x": 439,
+      "y": 824,
+      "width": 7,
+      "height": 19
+    },
+    {
+      "text": "COMPUTER",
+      "confidence": 96.0,
+      "x": 460,
+      "y": 816,
+      "width": 199,
+      "height": 27
+    },
+    {
+      "text": "SCIENCE",
+      "confidence": 92.0,
+      "x": 672,
+      "y": 815,
+      "width": 155,
+      "height": 28
+    },
+    {
+      "text": "&",
+      "confidence": 92.0,
+      "x": 839,
+      "y": 816,
+      "width": 23,
+      "height": 27
+    },
+    {
+      "text": "ENGINEERING",
+      "confidence": 96.0,
+      "x": 875,
+      "y": 816,
+      "width": 244,
+      "height": 29
+    },
+    {
+      "text": "Fa",
+      "confidence": 18.0,
+      "x": 2029,
+      "y": 800,
+      "width": 38,
+      "height": 59
+    },
+    {
+      "text": "y",
+      "confidence": 6.0,
+      "x": 67,
+      "y": 853,
+      "width": 32,
+      "height": 135
+    },
+    {
+      "text": "MICROPROCESSORS",
+      "confidence": 96.0,
+      "x": 159,
+      "y": 885,
+      "width": 330,
+      "height": 25
+    },
+    {
+      "text": "3",
+      "confidence": 95.0,
+      "x": 1329,
+      "y": 892,
+      "width": 15,
+      "height": 23
+    },
+    {
+      "text": "A+",
+      "confidence": 89.0,
+      "x": 1600,
+      "y": 891,
+      "width": 40,
+      "height": 23
+    },
+    {
+      "text": "27.00",
+      "confidence": 96.0,
+      "x": 1809,
+      "y": 886,
+      "width": 80,
+      "height": 25
+    },
+    {
+      "text": "}",
+      "confidence": 0.0,
+      "x": 2035,
+      "y": 851,
+      "width": 34,
+      "height": 143
+    },
+    {
+      "text": "a",
+      "confidence": 35.0,
+      "x": 61,
+      "y": 989,
+      "width": 35,
+      "height": 51
+    },
+    {
+      "text": "DESIGN",
+      "confidence": 95.0,
+      "x": 155,
+      "y": 989,
+      "width": 120,
+      "height": 24
+    },
+    {
+      "text": "AND",
+      "confidence": 96.0,
+      "x": 286,
+      "y": 989,
+      "width": 69,
+      "height": 24
+    },
+    {
+      "text": "ANALYSIS",
+      "confidence": 95.0,
+      "x": 365,
+      "y": 988,
+      "width": 160,
+      "height": 25
+    },
+    {
+      "text": "OF",
+      "confidence": 95.0,
+      "x": 537,
+      "y": 988,
+      "width": 42,
+      "height": 24
+    },
+    {
+      "text": "ALGORITHMS",
+      "confidence": 95.0,
+      "x": 589,
+      "y": 988,
+      "width": 216,
+      "height": 24
+    },
+    {
+      "text": "3",
+      "confidence": 96.0,
+      "x": 1330,
+      "y": 996,
+      "width": 16,
+      "height": 24
+    },
+    {
+      "text": "A",
+      "confidence": 96.0,
+      "x": 1601,
+      "y": 994,
+      "width": 23,
+      "height": 24
+    },
+    {
+      "text": "24.00",
+      "confidence": 96.0,
+      "x": 1808,
+      "y": 990,
+      "width": 79,
+      "height": 25
+    },
+    {
+      "text": "A",
+      "confidence": 69.0,
+      "x": 2038,
+      "y": 972,
+      "width": 34,
+      "height": 70
+    },
+    {
+      "text": "o",
+      "confidence": 29.0,
+      "x": 60,
+      "y": 1031,
+      "width": 34,
+      "height": 53
+    },
+    {
+      "text": "i",
+      "confidence": 0.0,
+      "x": 2040,
+      "y": 1032,
+      "width": 32,
+      "height": 47
+    },
+    {
+      "text": "y",
+      "confidence": 0.0,
+      "x": 58,
+      "y": 1080,
+      "width": 36,
+      "height": 93
+    },
+    {
+      "text": "DATABASE",
+      "confidence": 96.0,
+      "x": 151,
+      "y": 1092,
+      "width": 178,
+      "height": 25
+    },
+    {
+      "text": "MANAGEMENT",
+      "confidence": 96.0,
+      "x": 341,
+      "y": 1092,
+      "width": 232,
+      "height": 25
+    },
+    {
+      "text": "SYSTEMS",
+      "confidence": 96.0,
+      "x": 583,
+      "y": 1092,
+      "width": 152,
+      "height": 25
+    },
+    {
+      "text": "3",
+      "confidence": 96.0,
+      "x": 1331,
+      "y": 1101,
+      "width": 15,
+      "height": 24
+    },
+    {
+      "text": "At",
+      "confidence": 90.0,
+      "x": 1602,
+      "y": 1099,
+      "width": 41,
+      "height": 24
+    },
+    {
+      "text": "27.00",
+      "confidence": 96.0,
+      "x": 1809,
+      "y": 1095,
+      "width": 80,
+      "height": 25
+    },
+    {
+      "text": "W",
+      "confidence": 79.0,
+      "x": 2040,
+      "y": 1081,
+      "width": 32,
+      "height": 48
+    },
+    {
+      "text": "i",
+      "confidence": 4.0,
+      "x": 53,
+      "y": 1174,
+      "width": 35,
+      "height": 97
+    },
+    {
+      "text": "FORMAL",
+      "confidence": 96.0,
+      "x": 148,
+      "y": 1198,
+      "width": 137,
+      "height": 25
+    },
+    {
+      "text": "LANGUAGES",
+      "confidence": 96.0,
+      "x": 297,
+      "y": 1198,
+      "width": 204,
+      "height": 25
+    },
+    {
+      "text": "AND",
+      "confidence": 96.0,
+      "x": 510,
+      "y": 1198,
+      "width": 69,
+      "height": 25
+    },
+    {
+      "text": "AUTOMATA",
+      "confidence": 96.0,
+      "x": 589,
+      "y": 1197,
+      "width": 186,
+      "height": 26
+    },
+    {
+      "text": "THEORY",
+      "confidence": 96.0,
+      "x": 785,
+      "y": 1199,
+      "width": 133,
+      "height": 24
+    },
+    {
+      "text": "3",
+      "confidence": 96.0,
+      "x": 1331,
+      "y": 1208,
+      "width": 16,
+      "height": 24
+    },
+    {
+      "text": "A",
+      "confidence": 96.0,
+      "x": 1604,
+      "y": 1203,
+      "width": 23,
+      "height": 24
+    },
+    {
+      "text": "24.00",
+      "confidence": 96.0,
+      "x": 1806,
+      "y": 1194,
+      "width": 83,
+      "height": 38
+    },
+    {
+      "text": "8",
+      "confidence": 33.0,
+      "x": 2041,
+      "y": 1177,
+      "width": 36,
+      "height": 97
+    },
+    {
+      "text": "y",
+      "confidence": 21.0,
+      "x": 51,
+      "y": 1268,
+      "width": 35,
+      "height": 93
+    },
+    {
+      "text": "MANAGERIAL",
+      "confidence": 96.0,
+      "x": 144,
+      "y": 1303,
+      "width": 219,
+      "height": 25
+    },
+    {
+      "text": "ECONOMICS",
+      "confidence": 96.0,
+      "x": 375,
+      "y": 1304,
+      "width": 198,
+      "height": 25
+    },
+    {
+      "text": "3",
+      "confidence": 96.0,
+      "x": 1332,
+      "y": 1309,
+      "width": 16,
+      "height": 24
+    },
+    {
+      "text": "At",
+      "confidence": 75.0,
+      "x": 1607,
+      "y": 1309,
+      "width": 41,
+      "height": 23
+    },
+    {
+      "text": "27.00",
+      "confidence": 95.0,
+      "x": 1811,
+      "y": 1301,
+      "width": 81,
+      "height": 26
+    },
+    {
+      "text": "‘",
+      "confidence": 0.0,
+      "x": 2044,
+      "y": 1271,
+      "width": 35,
+      "height": 93
+    },
+    {
+      "text": "fa",
+      "confidence": 17.0,
+      "x": 44,
+      "y": 1366,
+      "width": 38,
+      "height": 100
+    },
+    {
+      "text": "ALGORITHMS",
+      "confidence": 96.0,
+      "x": 138,
+      "y": 1389,
+      "width": 221,
+      "height": 25
+    },
+    {
+      "text": "LAB",
+      "confidence": 96.0,
+      "x": 370,
+      "y": 1389,
+      "width": 65,
+      "height": 25
+    },
+    {
+      "text": "THROUGH",
+      "confidence": 96.0,
+      "x": 446,
+      "y": 1389,
+      "width": 163,
+      "height": 26
+    },
+    {
+      "text": "C++",
+      "confidence": 96.0,
+      "x": 621,
+      "y": 1389,
+      "width": 60,
+      "height": 25
+    },
+    {
+      "text": "15",
+      "confidence": 41.0,
+      "x": 1334,
+      "y": 1404,
+      "width": 43,
+      "height": 24
+    },
+    {
+      "text": "At",
+      "confidence": 88.0,
+      "x": 1609,
+      "y": 1393,
+      "width": 41,
+      "height": 24
+    },
+    {
+      "text": "13.50",
+      "confidence": 95.0,
+      "x": 1818,
+      "y": 1374,
+      "width": 79,
+      "height": 61
+    },
+    {
+      "text": "A",
+      "confidence": 24.0,
+      "x": 2049,
+      "y": 1366,
+      "width": 36,
+      "height": 98
+    },
+    {
+      "text": "y",
+      "confidence": 0.0,
+      "x": 43,
+      "y": 1458,
+      "width": 35,
+      "height": 95
+    },
+    {
+      "text": "DATABASE",
+      "confidence": 96.0,
+      "x": 137,
+      "y": 1474,
+      "width": 181,
+      "height": 26
+    },
+    {
+      "text": "MANAGEMENT",
+      "confidence": 95.0,
+      "x": 329,
+      "y": 1475,
+      "width": 238,
+      "height": 25
+    },
+    {
+      "text": "SYSTEMS",
+      "confidence": 95.0,
+      "x": 577,
+      "y": 1475,
+      "width": 155,
+      "height": 26
+    },
+    {
+      "text": "LAB",
+      "confidence": 96.0,
+      "x": 744,
+      "y": 1476,
+      "width": 64,
+      "height": 25
+    },
+    {
+      "text": "15",
+      "confidence": 76.0,
+      "x": 1335,
+      "y": 1483,
+      "width": 43,
+      "height": 25
+    },
+    {
+      "text": "°",
+      "confidence": 63.0,
+      "x": 1611,
+      "y": 1478,
+      "width": 24,
+      "height": 25
+    },
+    {
+      "text": "15.00",
+      "confidence": 95.0,
+      "x": 1820,
+      "y": 1477,
+      "width": 80,
+      "height": 25
+    },
+    {
+      "text": "YW",
+      "confidence": 17.0,
+      "x": 2051,
+      "y": 1456,
+      "width": 37,
+      "height": 61
+    },
+    {
+      "text": "i",
+      "confidence": 37.0,
+      "x": 57,
+      "y": 1520,
+      "width": 9,
+      "height": 34
+    },
+    {
+      "text": "Bia",
+      "confidence": 40.0,
+      "x": 2056,
+      "y": 1514,
+      "width": 31,
+      "height": 41
+    },
+    {
+      "text": "A",
+      "confidence": 66.0,
+      "x": 37,
+      "y": 1556,
+      "width": 35,
+      "height": 53
+    },
+    {
+      "text": "WEB",
+      "confidence": 95.0,
+      "x": 132,
+      "y": 1564,
+      "width": 76,
+      "height": 25
+    },
+    {
+      "text": "TECHNOLOGIES",
+      "confidence": 95.0,
+      "x": 219,
+      "y": 1564,
+      "width": 264,
+      "height": 26
+    },
+    {
+      "text": "LAB",
+      "confidence": 96.0,
+      "x": 494,
+      "y": 1564,
+      "width": 65,
+      "height": 26
+    },
+    {
+      "text": "2",
+      "confidence": 95.0,
+      "x": 1334,
+      "y": 1569,
+      "width": 17,
+      "height": 25
+    },
+    {
+      "text": "°",
+      "confidence": 38.0,
+      "x": 1613,
+      "y": 1566,
+      "width": 24,
+      "height": 26
+    },
+    {
+      "text": "20.00",
+      "confidence": 96.0,
+      "x": 1831,
+      "y": 1563,
+      "width": 81,
+      "height": 25
+    },
+    {
+      "text": "a",
+      "confidence": 25.0,
+      "x": 2057,
+      "y": 1556,
+      "width": 34,
+      "height": 55
+    },
+    {
+      "text": "go",
+      "confidence": 23.0,
+      "x": 36,
+      "y": 1606,
+      "width": 34,
+      "height": 43
+    },
+    {
+      "text": "4",
+      "confidence": 71.0,
+      "x": 35,
+      "y": 1650,
+      "width": 34,
+      "height": 44
+    },
+    {
+      "text": "PROFESSIONAL",
+      "confidence": 96.0,
+      "x": 128,
+      "y": 1652,
+      "width": 262,
+      "height": 26
+    },
+    {
+      "text": "ETHICS",
+      "confidence": 93.0,
+      "x": 400,
+      "y": 1653,
+      "width": 119,
+      "height": 25
+    },
+    {
+      "text": "&",
+      "confidence": 93.0,
+      "x": 530,
+      "y": 1652,
+      "width": 23,
+      "height": 26
+    },
+    {
+      "text": "UNIVERSAL",
+      "confidence": 95.0,
+      "x": 564,
+      "y": 1652,
+      "width": 189,
+      "height": 26
+    },
+    {
+      "text": "HUMAN",
+      "confidence": 95.0,
+      "x": 764,
+      "y": 1653,
+      "width": 118,
+      "height": 25
+    },
+    {
+      "text": "VALUES",
+      "confidence": 96.0,
+      "x": 893,
+      "y": 1653,
+      "width": 130,
+      "height": 25
+    },
+    {
+      "text": "0",
+      "confidence": 94.0,
+      "x": 1335,
+      "y": 1667,
+      "width": 17,
+      "height": 24
+    },
+    {
+      "text": "A",
+      "confidence": 96.0,
+      "x": 1613,
+      "y": 1652,
+      "width": 24,
+      "height": 25
+    },
+    {
+      "text": "0.00",
+      "confidence": 96.0,
+      "x": 1843,
+      "y": 1650,
+      "width": 63,
+      "height": 26
+    },
+    {
+      "text": "e|",
+      "confidence": 0.0,
+      "x": 2054,
+      "y": 1603,
+      "width": 41,
+      "height": 100
+    },
+    {
+      "text": "i",
+      "confidence": 33.0,
+      "x": 38,
+      "y": 1757,
+      "width": 19,
+      "height": 21
+    },
+    {
+      "text": "a",
+      "confidence": 41.0,
+      "x": 30,
+      "y": 1763,
+      "width": 34,
+      "height": 41
+    },
+    {
+      "text": "é",
+      "confidence": 39.0,
+      "x": 2066,
+      "y": 1757,
+      "width": 35,
+      "height": 48
+    },
+    {
+      "text": "ie",
+      "confidence": 26.0,
+      "x": 29,
+      "y": 1801,
+      "width": 34,
+      "height": 56
+    },
+    {
+      "text": "oo",
+      "confidence": 30.0,
+      "x": 286,
+      "y": 1817,
+      "width": 80,
+      "height": 6
+    },
+    {
+      "text": "a",
+      "confidence": 31.0,
+      "x": 511,
+      "y": 1817,
+      "width": 80,
+      "height": 5
+    },
+    {
+      "text": "nn",
+      "confidence": 38.0,
+      "x": 651,
+      "y": 1817,
+      "width": 238,
+      "height": 4
+    },
+    {
+      "text": "kes",
+      "confidence": 18.0,
+      "x": 1059,
+      "y": 1816,
+      "width": 159,
+      "height": 4
+    },
+    {
+      "text": "oo",
+      "confidence": 13.0,
+      "x": 1259,
+      "y": 1816,
+      "width": 149,
+      "height": 4
+    },
+    {
+      "text": "aa",
+      "confidence": 24.0,
+      "x": 1503,
+      "y": 1816,
+      "width": 79,
+      "height": 4
+    },
+    {
+      "text": "*",
+      "confidence": 0.0,
+      "x": 2068,
+      "y": 1800,
+      "width": 34,
+      "height": 58
+    },
+    {
+      "text": "Fi",
+      "confidence": 2.0,
+      "x": 28,
+      "y": 1848,
+      "width": 34,
+      "height": 55
+    },
+    {
+      "text": "Sob",
+      "confidence": 31.0,
+      "x": 44,
+      "y": 1905,
+      "width": 7,
+      "height": 41
+    },
+    {
+      "text": "SEMESTER",
+      "confidence": 95.0,
+      "x": 142,
+      "y": 1977,
+      "width": 206,
+      "height": 31
+    },
+    {
+      "text": "GRADE",
+      "confidence": 95.0,
+      "x": 359,
+      "y": 1977,
+      "width": 130,
+      "height": 30
+    },
+    {
+      "text": "POINT",
+      "confidence": 95.0,
+      "x": 502,
+      "y": 1976,
+      "width": 113,
+      "height": 30
+    },
+    {
+      "text": "AVERAGE",
+      "confidence": 87.0,
+      "x": 624,
+      "y": 1976,
+      "width": 178,
+      "height": 29
+    },
+    {
+      "text": "(SGPA)",
+      "confidence": 87.0,
+      "x": 845,
+      "y": 1975,
+      "width": 124,
+      "height": 37
+    },
+    {
+      "text": "CUMULATIVE",
+      "confidence": 96.0,
+      "x": 141,
+      "y": 2048,
+      "width": 240,
+      "height": 31
+    },
+    {
+      "text": "GRADE",
+      "confidence": 96.0,
+      "x": 393,
+      "y": 2047,
+      "width": 130,
+      "height": 30
+    },
+    {
+      "text": "POINT",
+      "confidence": 95.0,
+      "x": 536,
+      "y": 2047,
+      "width": 112,
+      "height": 30
+    },
+    {
+      "text": "AVERAGE",
+      "confidence": 92.0,
+      "x": 657,
+      "y": 2046,
+      "width": 178,
+      "height": 29
+    },
+    {
+      "text": "(CGPA)",
+      "confidence": 92.0,
+      "x": 858,
+      "y": 2045,
+      "width": 127,
+      "height": 38
+    },
+    {
+      "text": "PASSING",
+      "confidence": 96.0,
+      "x": 147,
+      "y": 2304,
+      "width": 166,
+      "height": 31
+    },
+    {
+      "text": "MINIMUM",
+      "confidence": 96.0,
+      "x": 326,
+      "y": 2303,
+      "width": 165,
+      "height": 32
+    },
+    {
+      "text": "(1)",
+      "confidence": 96.0,
+      "x": 131,
+      "y": 2372,
+      "width": 45,
+      "height": 38
+    },
+    {
+      "text": "MINIMUM",
+      "confidence": 96.0,
+      "x": 199,
+      "y": 2369,
+      "width": 167,
+      "height": 32
+    },
+    {
+      "text": "OF",
+      "confidence": 92.0,
+      "x": 379,
+      "y": 2368,
+      "width": 52,
+      "height": 32
+    },
+    {
+      "text": "‘P'",
+      "confidence": 63.0,
+      "x": 462,
+      "y": 2368,
+      "width": 39,
+      "height": 31
+    },
+    {
+      "text": "GRADE",
+      "confidence": 69.0,
+      "x": 533,
+      "y": 2367,
+      "width": 132,
+      "height": 32
+    },
+    {
+      "text": "IN",
+      "confidence": 69.0,
+      "x": 678,
+      "y": 2367,
+      "width": 34,
+      "height": 30
+    },
+    {
+      "text": "THEORY",
+      "confidence": 91.0,
+      "x": 724,
+      "y": 2366,
+      "width": 155,
+      "height": 31
+    },
+    {
+      "text": ",",
+      "confidence": 91.0,
+      "x": 891,
+      "y": 2389,
+      "width": 6,
+      "height": 11
+    },
+    {
+      "text": "MINIMUM",
+      "confidence": 95.0,
+      "x": 911,
+      "y": 2364,
+      "width": 163,
+      "height": 32
+    },
+    {
+      "text": "OF",
+      "confidence": 92.0,
+      "x": 1088,
+      "y": 2365,
+      "width": 49,
+      "height": 31
+    },
+    {
+      "text": "'C’",
+      "confidence": 67.0,
+      "x": 1170,
+      "y": 2365,
+      "width": 40,
+      "height": 30
+    },
+    {
+      "text": "GRADE",
+      "confidence": 96.0,
+      "x": 1243,
+      "y": 2365,
+      "width": 130,
+      "height": 31
+    },
+    {
+      "text": "IN",
+      "confidence": 93.0,
+      "x": 1387,
+      "y": 2366,
+      "width": 34,
+      "height": 31
+    },
+    {
+      "text": "PRACTICALS",
+      "confidence": 92.0,
+      "x": 1434,
+      "y": 2367,
+      "width": 235,
+      "height": 33
+    },
+    {
+      "text": "AND",
+      "confidence": 97.0,
+      "x": 1680,
+      "y": 2370,
+      "width": 79,
+      "height": 31
+    },
+    {
+      "text": "(2)",
+      "confidence": 96.0,
+      "x": 129,
+      "y": 2429,
+      "width": 44,
+      "height": 39
+    },
+    {
+      "text": "THE",
+      "confidence": 96.0,
+      "x": 195,
+      "y": 2428,
+      "width": 76,
+      "height": 31
+    },
+    {
+      "text": "MINIMUM",
+      "confidence": 96.0,
+      "x": 283,
+      "y": 2426,
+      "width": 168,
+      "height": 33
+    },
+    {
+      "text": "OF",
+      "confidence": 93.0,
+      "x": 463,
+      "y": 2425,
+      "width": 52,
+      "height": 32
+    },
+    {
+      "text": "S.G.P.A",
+      "confidence": 86.0,
+      "x": 525,
+      "y": 2424,
+      "width": 137,
+      "height": 32
+    },
+    {
+      "text": "REQUIRED",
+      "confidence": 96.0,
+      "x": 673,
+      "y": 2423,
+      "width": 194,
+      "height": 32
+    },
+    {
+      "text": "FOR",
+      "confidence": 96.0,
+      "x": 880,
+      "y": 2422,
+      "width": 77,
+      "height": 31
+    },
+    {
+      "text": "PASS",
+      "confidence": 96.0,
+      "x": 969,
+      "y": 2422,
+      "width": 96,
+      "height": 31
+    },
+    {
+      "text": "IS",
+      "confidence": 80.0,
+      "x": 1078,
+      "y": 2422,
+      "width": 33,
+      "height": 31
+    },
+    {
+      "text": "5.0",
+      "confidence": 96.0,
+      "x": 1123,
+      "y": 2422,
+      "width": 50,
+      "height": 31
+    },
+    {
+      "text": "IN",
+      "confidence": 95.0,
+      "x": 1186,
+      "y": 2422,
+      "width": 34,
+      "height": 31
+    },
+    {
+      "text": "EACH",
+      "confidence": 95.0,
+      "x": 1233,
+      "y": 2422,
+      "width": 101,
+      "height": 32
+    },
+    {
+      "text": "SEMESTER.",
+      "confidence": 96.0,
+      "x": 1347,
+      "y": 2423,
+      "width": 215,
+      "height": 33
+    },
+    {
+      "text": "Note:",
+      "confidence": 96.0,
+      "x": 127,
+      "y": 2484,
+      "width": 111,
+      "height": 35
+    },
+    {
+      "text": "THE",
+      "confidence": 96.0,
+      "x": 251,
+      "y": 2488,
+      "width": 61,
+      "height": 28
+    },
+    {
+      "text": "UNIVERSITY",
+      "confidence": 96.0,
+      "x": 323,
+      "y": 2486,
+      "width": 181,
+      "height": 30
+    },
+    {
+      "text": "RESERVES",
+      "confidence": 96.0,
+      "x": 513,
+      "y": 2484,
+      "width": 150,
+      "height": 30
+    },
+    {
+      "text": "THE",
+      "confidence": 95.0,
+      "x": 672,
+      "y": 2483,
+      "width": 59,
+      "height": 29
+    },
+    {
+      "text": "RIGHT",
+      "confidence": 96.0,
+      "x": 742,
+      "y": 2483,
+      "width": 94,
+      "height": 29
+    },
+    {
+      "text": "TO",
+      "confidence": 93.0,
+      "x": 843,
+      "y": 2483,
+      "width": 42,
+      "height": 28
+    },
+    {
+      "text": "CANCEL/REVISE",
+      "confidence": 92.0,
+      "x": 895,
+      "y": 2479,
+      "width": 237,
+      "height": 36
+    },
+    {
+      "text": "THE",
+      "confidence": 96.0,
+      "x": 1140,
+      "y": 2483,
+      "width": 60,
+      "height": 28
+    },
+    {
+      "text": "RESULT",
+      "confidence": 96.0,
+      "x": 1211,
+      "y": 2483,
+      "width": 112,
+      "height": 28
+    },
+    {
+      "text": "AND",
+      "confidence": 96.0,
+      "x": 1331,
+      "y": 2484,
+      "width": 69,
+      "height": 28
+    },
+    {
+      "text": "CERTIFICATE,",
+      "confidence": 96.0,
+      "x": 1410,
+      "y": 2485,
+      "width": 201,
+      "height": 37
+    },
+    {
+      "text": "IF",
+      "confidence": 96.0,
+      "x": 1632,
+      "y": 2489,
+      "width": 24,
+      "height": 28
+    },
+    {
+      "text": "ANY",
+      "confidence": 96.0,
+      "x": 1666,
+      "y": 2490,
+      "width": 65,
+      "height": 29
+    },
+    {
+      "text": "DISCREPANCY",
+      "confidence": 96.0,
+      "x": 1742,
+      "y": 2491,
+      "width": 215,
+      "height": 31
+    },
+    {
+      "text": "IS",
+      "confidence": 95.0,
+      "x": 1967,
+      "y": 2493,
+      "width": 27,
+      "height": 29
+    },
+    {
+      "text": "FOU",
+      "confidence": 96.0,
+      "x": 2004,
+      "y": 2495,
+      "width": 65,
+      "height": 28
+    },
+    {
+      "text": "t",
+      "confidence": 31.0,
+      "x": 2122,
+      "y": 2713,
+      "width": 6,
+      "height": 12
+    },
+    {
+      "text": "|",
+      "confidence": 50.0,
+      "x": 2103,
+      "y": 2720,
+      "width": 1,
+      "height": 22
+    },
+    {
+      "text": "Vou.",
+      "confidence": 38.0,
+      "x": 1521,
+      "y": 2737,
+      "width": 464,
+      "height": 106
+    },
+    {
+      "text": "|",
+      "confidence": 74.0,
+      "x": 2124,
+      "y": 2727,
+      "width": 19,
+      "height": 61
+    },
+    {
+      "text": "Addl.",
+      "confidence": 89.0,
+      "x": 1353,
+      "y": 2853,
+      "width": 96,
+      "height": 34
+    },
+    {
+      "text": "Controller",
+      "confidence": 95.0,
+      "x": 1495,
+      "y": 2859,
+      "width": 204,
+      "height": 44
+    },
+    {
+      "text": "of",
+      "confidence": 96.0,
+      "x": 1712,
+      "y": 2867,
+      "width": 41,
+      "height": 37
+    },
+    {
+      "text": "Examinations",
+      "confidence": 95.0,
+      "x": 1762,
+      "y": 2864,
+      "width": 284,
+      "height": 54
+    },
+    {
+      "text": "Visakhapatnam",
+      "confidence": 95.0,
+      "x": 66,
+      "y": 2797,
+      "width": 235,
+      "height": 31
+    },
+    {
+      "text": "Date",
+      "confidence": 93.0,
+      "x": 63,
+      "y": 2871,
+      "width": 68,
+      "height": 27
+    },
+    {
+      "text": ":48-10-2025",
+      "confidence": 78.0,
+      "x": 145,
+      "y": 2869,
+      "width": 204,
+      "height": 37
+    },
+    {
+      "text": "Se",
+      "confidence": 4.0,
+      "x": 1,
+      "y": 2935,
+      "width": 17,
+      "height": 20
+    },
+    {
+      "text": "at",
+      "confidence": 26.0,
+      "x": 61,
+      "y": 2923,
+      "width": 24,
+      "height": 39
+    },
+    {
+      "text": "TE",
+      "confidence": 30.0,
+      "x": 24,
+      "y": 2948,
+      "width": 59,
+      "height": 18
+    },
+    {
+      "text": "Pee",
+      "confidence": 24.0,
+      "x": 115,
+      "y": 2924,
+      "width": 178,
+      "height": 46
+    },
+    {
+      "text": "Pat",
+      "confidence": 22.0,
+      "x": 311,
+      "y": 2924,
+      "width": 123,
+      "height": 46
+    },
+    {
+      "text": "Peet",
+      "confidence": 0.0,
+      "x": 503,
+      "y": 2924,
+      "width": 108,
+      "height": 46
+    },
+    {
+      "text": "hp",
+      "confidence": 31.0,
+      "x": 667,
+      "y": 2924,
+      "width": 43,
+      "height": 46
+    },
+    {
+      "text": "DoT",
+      "confidence": 9.0,
+      "x": 725,
+      "y": 2924,
+      "width": 74,
+      "height": 46
+    },
+    {
+      "text": "kD",
+      "confidence": 17.0,
+      "x": 859,
+      "y": 2924,
+      "width": 39,
+      "height": 46
+    },
+    {
+      "text": "Sitter",
+      "confidence": 0.0,
+      "x": 917,
+      "y": 2924,
+      "width": 92,
+      "height": 46
+    },
+    {
+      "text": "ep",
+      "confidence": 13.0,
+      "x": 1047,
+      "y": 2924,
+      "width": 39,
+      "height": 46
+    },
+    {
+      "text": "pattie",
+      "confidence": 12.0,
+      "x": 1136,
+      "y": 2948,
+      "width": 52,
+      "height": 7
+    },
+    {
+      "text": "ine",
+      "confidence": 20.0,
+      "x": 1190,
+      "y": 2952,
+      "width": 19,
+      "height": 4
+    },
+    {
+      "text": "OK",
+      "confidence": 39.0,
+      "x": 1221,
+      "y": 2926,
+      "width": 16,
+      "height": 43
+    },
+    {
+      "text": "He",
+      "confidence": 50.0,
+      "x": 1250,
+      "y": 2926,
+      "width": 19,
+      "height": 43
+    },
+    {
+      "text": "Ng",
+      "confidence": 0.0,
+      "x": 1273,
+      "y": 2945,
+      "width": 27,
+      "height": 20
+    },
+    {
+      "text": "aurrem",
+      "confidence": 0.0,
+      "x": 1322,
+      "y": 2952,
+      "width": 45,
+      "height": 7
+    },
+    {
+      "text": "at",
+      "confidence": 17.0,
+      "x": 1599,
+      "y": 2943,
+      "width": 31,
+      "height": 20
+    },
+    {
+      "text": "he",
+      "confidence": 22.0,
+      "x": 1639,
+      "y": 2930,
+      "width": 18,
+      "height": 41
+    },
+    {
+      "text": "Goan",
+      "confidence": 28.0,
+      "x": 1667,
+      "y": 2946,
+      "width": 43,
+      "height": 13
+    },
+    {
+      "text": "SP",
+      "confidence": 12.0,
+      "x": 1790,
+      "y": 2950,
+      "width": 37,
+      "height": 13
+    },
+    {
+      "text": "ore",
+      "confidence": 17.0,
+      "x": 1858,
+      "y": 2951,
+      "width": 202,
+      "height": 18
+    }
+  ],
+  "image_width": 2160,
+  "image_height": 3050
+}
