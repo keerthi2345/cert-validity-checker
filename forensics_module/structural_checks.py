@@ -78,3 +78,21 @@ def check_font_spacing_consistency(ocr_words):
         "consistent": bool(coefficient_of_variation < 0.35),
         "coefficient_of_variation": round(float(coefficient_of_variation), 3),
     }
+
+def detect_letterhead(image, top_fraction=0.15):
+    """
+    Checks if the top portion of the document has a meaningful amount of
+    printed content (logo/institution name/heading) — genuine certificates
+    almost always have this; a cropped/faked page often doesn't.
+    """
+    h, w = image.shape[:2]
+    top = image[0:int(h * top_fraction), :]
+
+    gray = cv2.cvtColor(top, cv2.COLOR_BGR2GRAY)
+    _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    ink_ratio = cv2.countNonZero(thresh) / thresh.size
+
+    return {
+        "letterhead_likely": ink_ratio > 0.03,
+        "ink_ratio": round(float(ink_ratio), 4),
+    }
