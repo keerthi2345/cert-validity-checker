@@ -56,3 +56,25 @@ def detect_signature_region(image, seal_region=None, band_height_ratio=0.15):
         "signature_likely": len(ink_contours) > 3,
         "ink_component_count": len(ink_contours),
     }
+
+def check_font_spacing_consistency(ocr_words):
+    """
+    Takes a list of OCR word boxes (each with a 'height' key, from Person 3's ocr_module).
+    Flags a document if letter heights vary too much — a sign of inconsistent/edited text.
+    """
+    heights = [
+        w["height"] for w in ocr_words
+        if w.get("height", 0) > 0 and w.get("confidence", 0) > 30
+    ]
+
+    if len(heights) < 5:
+        return {"consistent": True, "reason": "not enough text detected to judge"}
+
+    mean_h = np.mean(heights)
+    std_h = np.std(heights)
+    coefficient_of_variation = std_h / (mean_h + 1e-6)
+
+    return {
+        "consistent": bool(coefficient_of_variation < 0.35),
+        "coefficient_of_variation": round(float(coefficient_of_variation), 3),
+    }
