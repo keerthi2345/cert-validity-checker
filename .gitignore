@@ -31,3 +31,5 @@ Thumbs.db
 forensics_module/temp_images/
 forensics_module/venv/
 _ela_temp.jpg
+
+backend/temp_ocr_input/

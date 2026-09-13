@@ -101,7 +101,8 @@ def process_document(document_id: str, file_path: str):
         # }
         #
 
-        person3_result = None
+        from app.integrations.person3 import run_ocr_pipeline
+        person3_result = run_ocr_pipeline(file_path)
 
         # -------------------------------------------------
         # PERSON 4 INTEGRATION HOOK
@@ -125,7 +126,8 @@ def process_document(document_id: str, file_path: str):
         # }
         #
 
-        person4_result = None
+        from app.integrations.person4 import run_forensics_pipeline
+        person4_result = run_forensics_pipeline(file_path, person3_result)
 
         # Person 3 / Person 4 actual pipelines inka
         # connect avvakapothe document Pending gane untundi.
@@ -140,23 +142,12 @@ def process_document(document_id: str, file_path: str):
         # AGGREGATION
         # -------------------------------------------------
 
-        logic_passed = (
-            person3_result.get("logic_check_result") == "PASS"
-        )
-
-        structural_score = float(
-            person4_result.get("structural_score", 0)
-        )
-
-        forensic_score = float(
-            person4_result.get("forensics_score", 0)
-        )
-
-        final_score, final_status = calculate_final_status(
-            logic_passed,
-            structural_score,
-            forensic_score
-        )
+        # Using Person 4's own final_result directly — it already combines
+        # logic-check status with all forensic signals and applies hard-cap
+        # rules (e.g. confirmed copy-move can't be averaged away to "Valid").
+        final_verdict = person4_result["forensic_result"]["final_result"]
+        final_score = round(final_verdict["authenticity_score"] * 100, 2)
+        final_status = final_verdict["label"]
 
         # -------------------------------------------------
         # SAVE VERIFICATION RESULT
@@ -172,7 +163,7 @@ def process_document(document_id: str, file_path: str):
 
             structural_result=json.dumps(
                 {
-                    "structural_score": structural_score
+                    "structural_score": person4_result["structural_score"]
                 },
                 ensure_ascii=False
             ),
