@@ -29,22 +29,23 @@ def detect_seal_stamp(image):
 
     return {"seal_present": len(seals) > 0, "regions": seals}
 
-def detect_signature_region(image, seal_region=None, band_height_ratio=0.15):
+def detect_signature_region(image, seal_region=None, band_height_ratio=0.15, bottom_fallback_fraction=0.25):
     """
-    Look for ink strokes near the seal (signatures and seals are almost always
-    placed together on certificates). Falls back to the whole image if no seal found.
+    Look for ink strokes near the seal (signatures and seals are usually together).
+    If no seal was found, fall back to just the bottom band of the page (where
+    signatures conventionally sit) — NOT the whole page, since scanning the whole
+    page on a text-heavy document falsely flags ordinary printed text as a signature.
     """
     h, w = image.shape[:2]
 
     if seal_region:
-        # Search a horizontal band centered on the seal's y-position
         center_y = seal_region["y"]
         band_h = int(h * band_height_ratio)
         y1 = max(0, center_y - band_h)
         y2 = min(h, center_y + band_h)
         band = image[y1:y2, :]
     else:
-        band = image  # no seal hint — check the whole page
+        band = image[int(h * (1 - bottom_fallback_fraction)):h, :]
 
     gray = cv2.cvtColor(band, cv2.COLOR_BGR2GRAY)
     _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
@@ -52,9 +53,14 @@ def detect_signature_region(image, seal_region=None, band_height_ratio=0.15):
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     ink_contours = [c for c in contours if 80 < cv2.contourArea(c) < 5000]
 
+    count = len(ink_contours)
+    # A real signature has a MODERATE amount of ink — too little means blank,
+    # too much means we're actually looking at a block of printed text/paragraph.
+    signature_likely = 3 < count < 60
+
     return {
-        "signature_likely": len(ink_contours) > 3,
-        "ink_component_count": len(ink_contours),
+        "signature_likely": signature_likely,
+        "ink_component_count": count,
     }
 
 def check_font_spacing_consistency(ocr_words):
