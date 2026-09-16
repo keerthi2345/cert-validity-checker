@@ -1,4 +1,5 @@
 import { AuthUser, UserRole } from '../types';
+import { API_BASE_URL } from './api';
 
 const TOKEN_KEY = 'veridoc_auth_token';
 const USER_KEY = 'veridoc_auth_user';
@@ -162,7 +163,7 @@ export const authService = {
 
     // 1. Try real server endpoint if available
     try {
-      const response = await fetch('/api/v1/auth/login', {
+        const response = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

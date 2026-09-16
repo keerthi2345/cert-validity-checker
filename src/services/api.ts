@@ -3,7 +3,7 @@
  * Configured to use VITE_API_BASE_URL when provided, or relative paths.
  */
 
-export const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || '';
+export const API_BASE_URL = (import.meta as any).env?.VITE_API_BASE_URL || 'http://localhost:8000';
 
 export async function apiRequest<T>(
   endpoint: string,
