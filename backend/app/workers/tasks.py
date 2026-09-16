@@ -1,10 +1,12 @@
 import json
 
 from app.database import SessionLocal
+from app.models.user import User
+from app.models.student import Student
 from app.models.document import Document
 from app.models.verification_result import VerificationResult
+from app.models.audit_log import AuditLog
 from app.workers.celery_app import celery_app
-
 
 @celery_app.task
 def test_task():
