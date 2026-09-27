@@ -4,7 +4,7 @@ import { apiRequest } from './api';
 export const documentService = {
   async getDocuments(status?: string): Promise<StudentDocument[]> {
     try {
-      const endpoint = status ? `/api/v1/documents?status=${status}` : '/api/v1/documents';
+      const endpoint = '/api/v1/documents/my-documents';
       return await apiRequest<StudentDocument[]>(endpoint);
     } catch {
       // Fallback handled in UI components
@@ -14,7 +14,7 @@ export const documentService = {
 
   async getDocumentById(id: string): Promise<StudentDocument | null> {
     try {
-      return await apiRequest<StudentDocument>(`/api/v1/documents/${id}`);
+      return await apiRequest<StudentDocument>(`/api/v1/results/${id}`);
     } catch {
       return null;
     }

@@ -13,6 +13,9 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
+import { documentService } from '../services/documentService';
+import { mapVerificationDetail } from '../services/adapters';
+
 
 interface NewUploadModalProps {
   isOpen: boolean;
@@ -25,14 +28,15 @@ export const NewUploadModal: React.FC<NewUploadModalProps> = ({
   onClose,
   onUploadSuccess
 }) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [fileName, setFileName] = useState<string>('Marksheet_Scan_2025.pdf');
-  const [fileSize, setFileSize] = useState<string>('2.2 MB');
-  const [title, setTitle] = useState<string>('12th Marksheet - Senior School Certificate Examination');
+    const [file, setFile] = useState<File | null>(null);
+  const [fileName, setFileName] = useState<string>('');
+  const [fileSize, setFileSize] = useState<string>('');
+  const [title, setTitle] = useState<string>('');
   const [documentType, setDocumentType] = useState<DocumentType>('12th Marksheet');
-  const [institution, setInstitution] = useState<string>('Central Board of Secondary Education');
-  const [studentName, setStudentName] = useState<string>('Aarav Sharma');
-  const [studentId, setStudentId] = useState<string>('2025-XII-88421');
+  const [institution, setInstitution] = useState<string>('');
+  const [studentName, setStudentName] = useState<string>('');
+  const [studentId, setStudentId] = useState<string>('');
+  const [uploadError, setUploadError] = useState<string>('');
 
   // Upload & processing states
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
@@ -61,135 +65,66 @@ export const NewUploadModal: React.FC<NewUploadModalProps> = ({
     { title: 'Authenticity Verification', desc: 'Computing authenticity score and compiling verification result' }
   ];
 
-  const handleStartUploadAndVerify = async () => {
+    const handleStartUploadAndVerify = async () => {
+    if (!file) {
+      setUploadError('Please select a file first.');
+      return;
+    }
+
+    setUploadError('');
     setIsProcessing(true);
     setProgressPercent(15);
     setProcessingStage(0);
 
-    // Progress simulation through pipeline stages
-    await new Promise(r => setTimeout(r, 600));
-    setProgressPercent(35);
-    setProcessingStage(1);
-
-    await new Promise(r => setTimeout(r, 700));
-    setProgressPercent(65);
-    setProcessingStage(2);
-
-    await new Promise(r => setTimeout(r, 700));
-    setProgressPercent(85);
-    setProcessingStage(3);
-
-    // Attempt Server-side AI analyze call if available
-    let aiExplanation = null;
     try {
-      const resp = await fetch('/api/v1/ai/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          documentTitle: title,
-          documentType,
-          institution,
-          studentName,
-          extractedText: `${title} issued by ${institution} for ${studentName}`
-        })
-      });
-      if (resp.ok) {
-        aiExplanation = await resp.json();
-      }
-    } catch {
-      // Fallback if offline
-    }
+      // Real upload to Person 2's backend
+      const formData = new FormData();
+      formData.append('file', file);
+      const uploaded = await documentService.uploadDocument(formData);
 
-    await new Promise(r => setTimeout(r, 600));
-    setProgressPercent(100);
-    setProcessingStage(4);
+      setProgressPercent(35);
+      setProcessingStage(1);
 
-    const generatedDoc: StudentDocument = {
-      id: `DOC-2026-${Math.floor(1000 + Math.random() * 9000)}`,
-      title,
-      studentName,
-      studentId,
-      studentEmail: `${studentName.toLowerCase().replace(/\s+/g, '.')}@example.edu.in`,
-      documentType,
-      institution,
-      uploadedAt: new Date().toISOString(),
-      fileSize,
-      fileName,
-      status: 'valid',
-      authenticityScore: 95,
-      riskLevel: 'LOW RISK',
-      ocrResult: {
-        rawText: `${institution.toUpperCase()}\n${documentType.toUpperCase()}\nCandidate: ${studentName.toUpperCase()} | ID: ${studentId}\nStatus: ALL SUBJECTS CLEARED WITH DISTINCTION\nVerified against institutional issuance records.`,
-        fields: [
-          { fieldName: 'Candidate Name', extractedValue: studentName, confidence: 99.4, status: 'valid' },
-          { fieldName: 'Candidate ID / Roll No', extractedValue: studentId, confidence: 98.9, status: 'valid' },
-          { fieldName: 'Institution', extractedValue: institution, confidence: 99.7, status: 'valid' },
-          { fieldName: 'Document Category', extractedValue: documentType, confidence: 98.5, status: 'valid' },
-          { fieldName: 'Verification Result', extractedValue: 'AUTHENTIC', confidence: 99.0, status: 'valid' }
-        ]
-      },
-      structuralAnalysis: {
-        templateMatchScore: 97.4,
-        layoutConsistency: 98.6,
-        marginAlignment: 'aligned',
-        sealPresence: true,
-        sealIntegrityScore: 96.5,
-        watermarkDetected: true,
-        qrCodeDecoded: true,
-        qrPayload: `https://verify.edu.in/records/${studentId}`,
-        logoVectorMatchScore: 98.0,
-        structuralSummary: 'Matches institutional layout parameters with intact vector seal geometry and proper alignment.'
-      },
-      forensicAnalysis: {
-        elaAnomalyScore: 4.8,
-        copyMoveArtifactsDetected: false,
-        fontConsistencyScore: 98.5,
-        colorSpaceDiscrepancy: false,
-        metadataAudit: {
-          creationDate: new Date().toISOString(),
-          modificationDate: new Date().toISOString(),
-          producerSoftware: 'Institutional PDF Issuance Engine v4.0',
-          metadataAltered: false,
-          fileHashSha256: '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08',
-          isEncrypted: false
-        },
-        forensicSummary: 'No localized compression anomalies or pixel cloning detected. Typography conforms to institutional standard.'
-      },
-      explanation: aiExplanation || {
-        verdict: 'AUTHENTIC',
-        authenticityScore: 95,
-        confidenceLevel: 98.0,
-        executiveSummary: 'Document passed all authenticity checks with intact security features, valid layout geometry, and zero digital tampering.',
-        keyFindings: [
-          { type: 'positive', title: 'Institutional Seal Verified', detail: 'Embossed emblem vector geometry exhibits zero distortion.' },
-          { type: 'positive', title: 'Consistent Font Kerning', detail: 'All values and text lines adhere to original typesetting parameters.' },
-          { type: 'positive', title: 'Valid Document Layout', detail: 'Margins, borders, and header alignments match official institutional template.' }
-        ],
-        actionRecommendation: 'Verified as valid. No manual examination required.'
-      },
-      suspiciousRegions: [],
-      reviewedBy: 'Automated Verification Pipeline',
-      reviewedAt: new Date().toISOString(),
-      comments: [
-        {
-          id: `comm-${Date.now()}`,
-          authorName: 'Verification System',
-          authorRole: 'admin',
-          timestamp: new Date().toISOString(),
-          text: 'Document validated with 95% authenticity rating. Marked as Valid.',
-          actionTaken: 'Approved'
+      const documentId = (uploaded as any).document_id;
+
+      // Real backend processing is asynchronous (Celery) — poll until it's done,
+      // rather than pretending it finished instantly.
+      let finalDoc: any = null;
+      const maxAttempts = 30; // up to ~60s
+      for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        await new Promise((r) => setTimeout(r, 2000));
+
+        if (attempt === 2) setProcessingStage(2);
+        if (attempt === 5) setProcessingStage(3);
+        setProgressPercent(Math.min(90, 35 + attempt * 3));
+
+        const detail = await documentService.getDocumentById(documentId);
+        if (detail && (detail as any).final_status && (detail as any).final_status !== null) {
+          finalDoc = detail;
+          break;
         }
-      ]
-    };
+      }
 
-    setCompletedDoc(generatedDoc);
-    setIsProcessing(false);
+      setProgressPercent(100);
+      setProcessingStage(4);
 
-    confetti({
-      particleCount: 70,
-      spread: 60,
-      origin: { y: 0.6 }
-    });
+      if (!finalDoc) {
+        throw new Error('Verification is taking longer than expected. Check your document history shortly.');
+      }
+
+      const mappedDoc = mapVerificationDetail(finalDoc);
+      setCompletedDoc(mappedDoc);
+      setIsProcessing(false);
+
+      confetti({
+        particleCount: 70,
+        spread: 60,
+        origin: { y: 0.6 }
+      });
+    } catch (err: any) {
+      setIsProcessing(false);
+      setUploadError(err.message || 'Upload failed. Please try again.');
+    }
   };
 
   const handleFinishAndOpenReport = () => {
@@ -338,6 +273,12 @@ export const NewUploadModal: React.FC<NewUploadModalProps> = ({
                 </div>
 
               </div>
+
+              {uploadError && (
+                <div className="text-xs text-red-400 bg-red-950/30 border border-red-500/30 rounded-xl px-3 py-2">
+                  {uploadError}
+                </div>
+              )}
 
               {/* Action Button */}
               <div className="pt-2">

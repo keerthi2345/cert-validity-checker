@@ -5,6 +5,8 @@ import { Navbar } from '../components/Navbar';
 import { StudentPortal } from '../components/StudentPortal';
 import { VerificationResultModal } from '../components/VerificationResultModal';
 import { NewUploadModal } from '../components/NewUploadModal';
+import { documentService } from '../services/documentService';
+import { mapVerificationDetail } from '../services/adapters';
 
 interface StudentDashboardPageProps {
   documents: StudentDocument[];
@@ -22,18 +24,24 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState<StudentDocument | null>(null);
 
-  // Synchronize route `/student/documents/:id` or `/student/results/:id` with document modal
+    // Synchronize route `/student/documents/:id` or `/student/results/:id` with document modal
+  // Fetches full verification detail (real score/forensics), not just the list summary.
   useEffect(() => {
     if (id) {
-      const found = documents.find((d) => d.id === id);
-      if (found) {
-        setSelectedDoc(found);
-      }
+      documentService.getDocumentById(id).then((apiDoc) => {
+        if (apiDoc) {
+          setSelectedDoc(mapVerificationDetail(apiDoc));
+        } else {
+          const fallback = documents.find((d) => d.id === id);
+          if (fallback) setSelectedDoc(fallback);
+        }
+      });
     }
-  }, [id, documents]);
+  }, [id]);
 
-  const handleSelectDocument = (doc: StudentDocument) => {
-    setSelectedDoc(doc);
+  const handleSelectDocument = async (doc: StudentDocument) => {
+    const apiDoc = await documentService.getDocumentById(doc.id);
+    setSelectedDoc(apiDoc ? mapVerificationDetail(apiDoc) : doc);
     navigate(`/student/results/${doc.id}`, { replace: false });
   };
 

@@ -13,10 +13,13 @@ export async function apiRequest<T>(
   
   const token = localStorage.getItem('veridoc_auth_token');
   
+    const isFormData = options.body instanceof FormData;
+
   const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
+    ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
     ...(options.headers as Record<string, string> || {}),
   };
+
 
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;

@@ -96,56 +96,71 @@ export const authService = {
     }
   },
 
-  async registerStudent(data: StudentRegistrationData): Promise<AuthUser> {
-    await new Promise((resolve) => setTimeout(resolve, 400));
-
+    async registerStudent(data: StudentRegistrationData): Promise<AuthUser> {
     const email = data.email.trim().toLowerCase();
-    const existing = this.getRegisteredUsers();
 
-    if (existing.some((u) => u.email.toLowerCase() === email)) {
-      throw new Error('An account with this email address already exists. Please log in.');
+    const response = await fetch(`${API_BASE_URL}/api/v1/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: data.name.trim(),
+        email,
+        password: data.password,
+        role: 'student'
+      })
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.json().catch(() => ({}));
+      throw new Error(errorBody.detail || 'Registration failed. This email may already be registered.');
     }
 
-    const newUser: AuthUser & { password?: string } = {
-      id: `usr-student-${Date.now()}`,
-      name: data.name.trim(),
-      email,
-      role: 'student',
-      studentId: data.studentId || `STU-${Math.floor(10000 + Math.random() * 90000)}`,
-      institution: data.institution.trim(),
-      password: data.password
-    };
+    const created = await response.json();
 
-    existing.push(newUser);
-    this.saveRegisteredUsers(existing);
+    const newUser: AuthUser = {
+      id: String(created.id),
+      name: created.name,
+      email: created.email,
+      role: created.role,
+      studentId: data.studentId,
+      institution: data.institution?.trim()
+    };
 
     return newUser;
   },
 
-  async registerAdmin(data: AdminRegistrationData): Promise<AuthUser> {
-    await new Promise((resolve) => setTimeout(resolve, 400));
-
+    async registerAdmin(data: AdminRegistrationData): Promise<AuthUser> {
     const email = data.email.trim().toLowerCase();
-    const existing = this.getRegisteredUsers();
 
-    if (existing.some((u) => u.email.toLowerCase() === email)) {
-      throw new Error('An admin account with this official email already exists. Please log in.');
+    const response = await fetch(`${API_BASE_URL}/api/v1/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: data.name.trim(),
+        email,
+        password: data.password,
+        role: 'admin'
+      })
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.json().catch(() => ({}));
+      throw new Error(errorBody.detail || 'Registration failed. This email may already be registered.');
     }
 
-    const newAdmin: AuthUser & { password?: string } = {
-      id: `usr-admin-${Date.now()}`,
-      name: data.name.trim(),
-      email,
-      role: 'admin',
-      institution: `${data.organization.trim()} (${data.designation.trim()})`,
-      password: data.password
-    };
+    const created = await response.json();
 
-    existing.push(newAdmin);
-    this.saveRegisteredUsers(existing);
+    const newAdmin: AuthUser = {
+      id: String(created.id),
+      name: created.name,
+      email: created.email,
+      role: created.role,
+      institution: `${data.organization.trim()} (${data.designation.trim()})`
+    };
 
     return newAdmin;
   },
+
 
   async login(credentials: LoginCredentials, expectedRole?: UserRole): Promise<AuthUser> {
     const email = credentials.email.trim().toLowerCase();
@@ -173,20 +188,39 @@ export const authService = {
         })
       });
 
-      if (response.ok) {
-        const data: AuthResponse = await response.json();
-        // Verify role match if expected
-        if (expectedRole && data.user.role !== expectedRole) {
+            if (response.ok) {
+        const data: { access_token: string; token_type: string } = await response.json();
+
+        // /auth/login doesn't return user details — fetch them separately
+        const meResponse = await fetch(`${API_BASE_URL}/api/v1/auth/me`, {
+          headers: { Authorization: `Bearer ${data.access_token}` }
+        });
+
+        if (!meResponse.ok) {
+          throw new Error('Could not retrieve account details after login.');
+        }
+
+        const userInfo = await meResponse.json();
+        const user: AuthUser = {
+          id: String(userInfo.id),
+          name: userInfo.name,
+          email: userInfo.email,
+          role: userInfo.role
+        };
+
+        if (expectedRole && user.role !== expectedRole) {
           throw new Error(`This account does not have ${expectedRole.toUpperCase()} permissions.`);
         }
-        this.setSession(data.access_token, data.user);
-        return data.user;
+
+        this.setSession(data.access_token, user);
+        return user;
       }
     } catch (err: any) {
-      if (err.message && err.message.includes('permissions')) {
+      if (err.message && (err.message.includes('permissions') || err.message.includes('account details'))) {
         throw err;
       }
     }
+
 
     // 2. Client-side authentication fallback against local registered users
     await new Promise((resolve) => setTimeout(resolve, 350));

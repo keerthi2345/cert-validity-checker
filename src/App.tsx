@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { StudentDocument } from './types';
-import { INITIAL_DOCUMENTS } from './data/mockDocuments';
+import { documentService } from './services/documentService';
+import { mapDocumentSummary } from './services/adapters';
+import { authService } from './services/authService';
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { LandingPage } from './pages/LandingPage';
@@ -14,7 +16,15 @@ import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { AdminReviewPage } from './pages/AdminReviewPage';
 
 export default function App() {
-  const [documents, setDocuments] = useState<StudentDocument[]>(INITIAL_DOCUMENTS);
+  const [documents, setDocuments] = useState<StudentDocument[]>([]);
+
+  useEffect(() => {
+    if (authService.isAuthenticated()) {
+      documentService.getDocuments().then((apiDocs) => {
+        setDocuments(apiDocs.map(mapDocumentSummary));
+      });
+    }
+  }, []);
 
   const handleUploadSuccess = (newDoc: StudentDocument) => {
     setDocuments((prev) => [newDoc, ...prev]);
