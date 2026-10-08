@@ -67,7 +67,7 @@ export function mapVerificationDetail(api: any): StudentDocument {
     uploadedAt: api.created_at,
     fileSize: '',
     fileName: api.file_name,
-    status: mapStatus(api.final_status),
+    status: mapStatus(api.document_status || api.final_status),
     authenticityScore: score,
     riskLevel: riskFromScore(score),
     ocrResult: mapOcrResult(ocr),

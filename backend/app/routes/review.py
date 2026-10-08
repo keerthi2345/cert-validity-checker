@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from app.models.verification_result import VerificationResult
 
 from app.auth.dependencies import require_role
 from app.database import get_db
@@ -57,6 +58,55 @@ def get_review_queue(
 
     return result
 
+@router.get("/all")
+def get_all_documents(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(
+        require_role("admin", "verifier")
+    )
+):
+    documents = (
+        db.query(Document)
+        .order_by(Document.uploaded_at.desc())
+        .all()
+    )
+
+    result = []
+
+    for document in documents:
+        student = (
+            db.query(Student)
+            .filter(Student.id == document.student_id)
+            .first()
+        )
+
+        latest_result = (
+            db.query(VerificationResult)
+            .filter(VerificationResult.document_id == document.id)
+            .order_by(VerificationResult.created_at.desc())
+            .first()
+        )
+
+        result.append({
+            "document_id": document.document_uid,
+            "file_name": document.file_name,
+            "file_type": document.file_type,
+            "status": document.status,
+            "student_id": document.student_id,
+            "student_number": (
+                student.student_number
+                if student
+                else None
+            ),
+            "uploaded_at": document.uploaded_at,
+            "authenticity_score": (
+                latest_result.authenticity_score
+                if latest_result
+                else None
+            )
+        })
+
+    return result
 
 @router.post("/{document_id}")
 def review_document(
