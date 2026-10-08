@@ -68,12 +68,26 @@ def extract_value_after_label(text, label_patterns):
                 continue
 
             remainder = line[match.end():]
-            remainder = remainder.strip(" :;-")
+            remainder = remainder.strip(" :;-=")
 
             if remainder and len(remainder) >= 2:
                 value = clean_name_value(remainder)
 
                 if value:
+                    if index + 1 < len(lines):
+                        next_line = lines[index + 1]
+
+                        if not re.search(
+                            r"FATHER|MOTHER|REGD|REGISTRATION|ROLL|NUMBER|"
+                            r"DATE|MONTH|YEAR|GRAND|TOTAL|RESULT",
+                            next_line,
+                            re.IGNORECASE
+                        ):
+                            continuation = clean_name_value(next_line)
+
+                            if continuation:
+                                value = f"{value} {continuation}"
+
                     return value
 
             if index + 1 < len(lines):
@@ -158,7 +172,6 @@ def extract_marks_table(image, words, image_width=None):
         word
         for word in words
         if "GRAND" in word.get("text", "").upper()
-        and word.get("y", 0) > table_start_y_ocr
     ]
 
     if not grand_words:
@@ -166,9 +179,11 @@ def extract_marks_table(image, words, image_width=None):
             "GRAND_TOTAL_NOT_FOUND"
         )
 
-    table_end_y_ocr = min(
-        word.get("y", 0)
-        for word in grand_words
+    grand_y_values = [word.get("y", 0) for word in grand_words]
+
+    table_start_y_ocr, table_end_y_ocr = (
+        min(table_start_y_ocr, min(grand_y_values)),
+        max(table_start_y_ocr, max(grand_y_values))
     )
 
     if table_end_y_ocr <= table_start_y_ocr:
@@ -297,6 +312,9 @@ def extract_intermediate_fields(
     """
     fields = {}
 
+    reconstructed_text = reconstructed_text.replace("\u2019", "'")
+    raw_text = raw_text.replace("\u2019", "'")
+
     combined_text = (
         f"{reconstructed_text}\n{raw_text}"
     ).upper()
@@ -336,16 +354,16 @@ def extract_intermediate_fields(
     fields["father_name"] = extract_value_after_label(
         reconstructed_text,
         [
-            r"FATHER'?S?\s+NAME\s*[:;.]?",
-            r"FATHER\s+NAME\s*[:;.]?"
+            r"FATHER\'?S?\s*NAME\s*[:;.]?",
+            r"FATHER\s*NAME\s*[:;.]?"
         ]
     )
 
     fields["mother_name"] = extract_value_after_label(
         reconstructed_text,
         [
-            r"MOTHER'?S?\s+(?:THER\s+)?NAME\s*[:;.]?",
-            r"MOTHER\s+NAME\s*[:;.]?"
+            r"MOTHER\'?S?\s*(?:THER\s*)?NAME\s*[:;.]?",
+            r"MOTHER\s*NAME\s*[:;.]?"
         ]
     )
 

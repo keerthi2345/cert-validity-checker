@@ -171,6 +171,140 @@ def find_mark_from_text(texts, patterns):
 
     return None
 
+DIGIT_WORDS = {
+    "ZERO": 0, "ONE": 1, "TWO": 2, "THREE": 3, "FOUR": 4,
+    "FIVE": 5, "SIX": 6, "SEVEN": 7, "EIGHT": 8, "NINE": 9
+}
+
+MONTH_NUMBERS = {
+    "JANUARY": 1, "FEBRUARY": 2, "MARCH": 3, "APRIL": 4,
+    "MAY": 5, "JUNE": 6, "JULY": 7, "AUGUST": 8,
+    "SEPTEMBER": 9, "OCTOBER": 10, "NOVEMBER": 11, "DECEMBER": 12
+}
+
+
+def digit_words_to_number(tokens):
+    """AP certificates spell numbers digit by digit: NINE NINE = 99."""
+    return int("".join(str(DIGIT_WORDS[t]) for t in tokens))
+
+
+def extract_dob_from_words(texts):
+    """Reads DOB written as words, e.g. ONE ONE MAY TWO ZERO ZERO FIVE."""
+    digit = "(?:" + "|".join(DIGIT_WORDS) + ")"
+    months = "(?:" + "|".join(MONTH_NUMBERS) + ")"
+    pattern = (
+        rf"\b({digit}(?:\s+{digit})?)\s+({months})"
+        rf"\s+({digit}\s+{digit}\s+{digit}\s+{digit})\b"
+    )
+
+    for text in texts:
+        match = re.search(pattern, text, re.IGNORECASE)
+
+        if match:
+            day = digit_words_to_number(match.group(1).upper().split())
+            month = MONTH_NUMBERS[match.group(2).upper()]
+            year = digit_words_to_number(match.group(3).upper().split())
+
+            if 1 <= day <= 31 and 1900 <= year <= 2100:
+                return f"{day:02d}/{month:02d}/{year}"
+
+    return None
+
+
+def extract_digit_word_rows(words, image_width):
+    """
+    Reads every row of digit-words (NINE NINE, ONE ZERO ZERO ...) in the
+    right half of the page. Returns one number per row, top to bottom.
+    """
+    candidates = []
+
+    for word in words:
+        token = word.get("text", "").upper().strip(" :;,.()[]{}|")
+
+        if token not in DIGIT_WORDS:
+            continue
+
+        if word.get("x", 0) < image_width * 0.5:
+            continue
+
+        candidates.append(word)
+
+    if not candidates:
+        return []
+
+    heights = sorted(w.get("height", 0) for w in candidates)
+    tolerance = max(heights[len(heights) // 2] * 1.2, 15)
+
+    candidates.sort(key=lambda w: w["y"])
+
+    rows = []
+    current = [candidates[0]]
+
+    for word in candidates[1:]:
+        if abs(word["y"] - current[0]["y"]) <= tolerance:
+            current.append(word)
+        else:
+            rows.append(current)
+            current = [word]
+
+    rows.append(current)
+
+    values = []
+
+    for row in rows:
+        row.sort(key=lambda w: w["x"])
+        tokens = [
+            w["text"].upper().strip(" :;,.()[]{}|") for w in row
+        ]
+        values.append(digit_words_to_number(tokens))
+
+    return values
+
+
+def find_marks_window(values):
+    """
+    Finds six consecutive rows whose sum equals the row after them
+    (six subject marks, then the grand total). Only a self-consistent
+    decode is accepted, so a misread cannot silently pass.
+    """
+    for start in range(len(values) - 6):
+        subjects = values[start:start + 6]
+        total = values[start + 6]
+
+        if all(20 <= v <= 100 for v in subjects) and sum(subjects) == total:
+            return subjects, total
+
+    return None
+
+
+def best_name_match(patterns, texts):
+    """
+    Tries the patterns on every version of the OCR text and keeps the
+    fullest name. Tilted photos often scramble one version's line order.
+    """
+    best = None
+
+    for text in texts:
+        for pattern in patterns:
+            match = re.search(
+                pattern,
+                text,
+                re.IGNORECASE | re.DOTALL
+            )
+
+            if match:
+                candidate = clean_name(match.group(1).strip())
+
+                if candidate and (
+                    best is None
+                    or len(candidate.split()) > len(best.split())
+                ):
+                    best = candidate
+
+                break
+
+    return best
+
 
 def extract_ssc_fields(reconstructed_text, raw_text, words, image_width):
     reconstructed_text = clean_text(reconstructed_text)
@@ -179,15 +313,14 @@ def extract_ssc_fields(reconstructed_text, raw_text, words, image_width):
     texts = [reconstructed_text, raw_text]
     fields = {}
 
-    name_value = first_match(
+    fields["name"] = best_name_match(
         [
+            r"CERTIFIED\s+THAT\s+([A-Z ]{3,80}?)(?=\s*\n|\s+FATHER)",
             r"CERTIFIED\s+([A-Z\s]{3,80}?)\s+THAT",
             r"CERTIFIED\s+([A-Z\s]{3,80}?)(?:\n|FATHER|MOTHER|ROLL)"
         ],
         texts
     )
-
-    fields["name"] = clean_name(name_value)
 
     father_value = first_match(
         [
@@ -199,19 +332,18 @@ def extract_ssc_fields(reconstructed_text, raw_text, words, image_width):
 
     fields["father_name"] = clean_name(father_value)
 
-    mother_value = first_match(
+    fields["mother_name"] = best_name_match(
         [
+            r"(?:MOTHER|MOTIIER|AOTHER)\s+NAME[^A-Z\n]{0,10}([A-Z ]{3,100}?)(?=\s*\n|\s+ROLL|\s+(?:B|H)EARING)",
             r"(?:MOTHER|MOTIIER|AOTHER)\s+NAME\s*[:;]?\s*([A-Z\s]{3,100}?)(?=\s+ROLL|\s+HEARING|\n)",
             r"(?:MOTHER|MOTIIER|AOTHER)\s+NAME\s*[:;]?\s*([A-Z\s]{3,100})"
         ],
         texts
     )
 
-    fields["mother_name"] = clean_name(mother_value)
-
     roll_no = first_match(
         [
-            r"ROLL\s*(?:NO|NUMBER)?\s*[:;]?\s*(\d{8,15})",
+            r"ROLL\s*(?:NO|NUMBER)?[\s:;=.\-]{0,12}(\d{8,15})",
             r"(\d{10})(?=\s*(?:ROLL|NO|HEARING))"
         ],
         texts
@@ -219,10 +351,13 @@ def extract_ssc_fields(reconstructed_text, raw_text, words, image_width):
 
     if not roll_no:
         for word in words:
-            token = normalize_numeric_token(word.get("text", ""))
+            raw_token = word.get("text", "").strip()
 
-            if token and len(token) == 10:
-                roll_no = token
+            # Only a token that is already exactly 10 digits. The old
+            # letter-to-digit guessing turned the "Rc.No. 031602/E3/..."
+            # line into a fake roll number.
+            if re.fullmatch(r"\d{10}", raw_token):
+                roll_no = raw_token
                 break
 
     fields["roll_no"] = roll_no
@@ -243,6 +378,9 @@ def extract_ssc_fields(reconstructed_text, raw_text, words, image_width):
         ],
         texts
     )
+    
+    if not fields["date_of_birth"]:
+        fields["date_of_birth"] = extract_dob_from_words(texts)
 
     subject_coordinate_terms = {
         "first_language_marks": {"TELUGU", "SANSKRIT", "URDU"},
@@ -297,8 +435,31 @@ def extract_ssc_fields(reconstructed_text, raw_text, words, image_width):
         texts
     )
 
-    return fields
+    # Fill any marks the printed figures missed from the "in words" column
+    # The "in words" column is the most reliable source of marks. It is only
+    # trusted when six subjects add up to the total that follows them.
+    marks_window = find_marks_window(
+        extract_digit_word_rows(words, image_width)
+    )
 
+    if marks_window:
+        subject_marks, stated_total = marks_window
+
+        subject_order = [
+            "first_language_marks",
+            "second_language_marks",
+            "third_language_marks",
+            "mathematics_marks",
+            "general_science_marks",
+            "social_studies_marks"
+        ]
+
+        for field_name, value in zip(subject_order, subject_marks):
+            fields[field_name] = str(value)
+
+        fields["grand_total"] = str(stated_total)
+    
+    return fields
 
 def validate_ssc_fields(fields):
     checks = {}
