@@ -38,3 +38,17 @@ backup_before_reset.sql
 *.sql
 public/veridoc-ai-source-code.zip
 backend/uploads/
+
+ocr_module/debug_*.py
+ocr_module/retest_latest.py
+
+venv/
+ocr_module/venv/
+ocr_module/outputs/
+ocr_module/ocr_results/
+ocr_module/classification_results/
+ocr_module/final_results/
+ocr_module/output_page_0.png
+ocr_module/sample_docs/
+forensics_module/*.pdf
+forensics_module/*.jpg
