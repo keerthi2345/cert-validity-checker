@@ -33,3 +33,8 @@ forensics_module/venv/
 _ela_temp.jpg
 
 backend/temp_ocr_input/
+
+backup_before_reset.sql
+*.sql
+public/veridoc-ai-source-code.zip
+backend/uploads/
