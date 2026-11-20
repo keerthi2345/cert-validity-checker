@@ -180,7 +180,7 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
             Drag and drop your academic documents here
           </h3>
           <p className="text-xs sm:text-sm text-slate-300 mb-6 max-w-lg leading-relaxed">
-            Supports <strong className="text-emerald-300 font-bold"> JPG, PNG</strong> files up to 25MB.<br></br> Upload marksheets, academic certificates for verification.
+            Supports <strong className="text-emerald-300 font-bold"> JPG, PNG</strong> files up to 10MB.<br></br> Upload marksheets, academic certificates for verification.
           </p>
 
           <button

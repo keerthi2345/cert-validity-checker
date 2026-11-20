@@ -20,7 +20,8 @@ node_modules/
 dist/
 
 # IDE / OS
-.vscode/
+.vscode/*
+!.vscode/tasks.json
 .idea/
 .DS_Store
 Thumbs.db

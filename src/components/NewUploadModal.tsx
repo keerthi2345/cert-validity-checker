@@ -196,7 +196,7 @@ export const NewUploadModal: React.FC<NewUploadModalProps> = ({
                   {file ? file.name : 'Click to select or drag document scan here'}
                 </div>
                 <p className="text-xs text-slate-400">
-                  Accepts  JPG, PNG up to 25MB
+                  Accepts  JPG, PNG up to 10MB
                 </p>
               </label>
 

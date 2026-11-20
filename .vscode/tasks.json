@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Redis (WSL)",
+      "type": "shell",
+      "command": "wsl -d Ubuntu-22.04 -u root service redis-server start",
+      "presentation": { "group": "veridoc", "panel": "dedicated", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Celery worker",
+      "type": "shell",
+      "command": ".\\venv\\Scripts\\celery.exe -A app.workers.celery_app.celery_app worker --loglevel=info --pool=solo",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "dependsOn": ["Redis (WSL)"],
+      "isBackground": true,
+      "presentation": { "group": "veridoc", "panel": "dedicated", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "FastAPI",
+      "type": "shell",
+      "command": ".\\venv\\Scripts\\uvicorn.exe app.main:app --reload",
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "isBackground": true,
+      "presentation": { "group": "veridoc", "panel": "dedicated", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Frontend",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "presentation": { "group": "veridoc", "panel": "dedicated", "reveal": "always" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start VeriDoc",
+      "dependsOn": ["Celery worker", "FastAPI", "Frontend"],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    }
+  ]
+}
