@@ -52,3 +52,8 @@ ocr_module/output_page_0.png
 ocr_module/sample_docs/
 forensics_module/*.pdf
 forensics_module/*.jpg
+
+backend/outputs/
+backend/temp_images/
+backend/diagnose.py
+backend/diagnose_ocr_*.txt

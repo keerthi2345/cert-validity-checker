@@ -10,6 +10,82 @@ pytesseract.pytesseract.tesseract_cmd = (
 )
 
 
+def _to_gray(image):
+    if image is None:
+        return None
+
+    if image.ndim == 3:
+        return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    return image
+
+
+def ocr_band(gray, y0, y1, x0, x1, psm="7", whitelist=None, scale=3):
+    """OCR one horizontal band of the page (all bounds are page fractions)."""
+    height, width = gray.shape[:2]
+
+    top, bottom = int(height * y0), int(height * y1)
+    left, right = int(width * x0), int(width * x1)
+
+    if bottom <= top or right <= left:
+        return ""
+
+    crop = cv2.resize(
+        gray[top:bottom, left:right],
+        None,
+        fx=scale,
+        fy=scale,
+        interpolation=cv2.INTER_CUBIC
+    )
+
+    _, crop = cv2.threshold(
+        crop,
+        0,
+        255,
+        cv2.THRESH_BINARY + cv2.THRESH_OTSU
+    )
+
+    config = f"--psm {psm}"
+
+    if whitelist:
+        config += f" -c tessedit_char_whitelist={whitelist}"
+
+    try:
+        return pytesseract.image_to_string(crop, config=config).strip()
+    except Exception:
+        return ""
+
+
+def scan_strips(
+    image,
+    y_start,
+    y_end,
+    strip_h=0.03,
+    step=0.015,
+    x0=0.08,
+    x1=0.94
+):
+    """
+    Read a page region as thin overlapping text strips. Strips work on
+    text inside table boxes, which full-page OCR often skips.
+    """
+    gray = _to_gray(image)
+
+    if gray is None:
+        return []
+
+    results = []
+    y = y_start
+
+    while y < y_end:
+        results.append(
+            (y, ocr_band(gray, y, min(1.0, y + strip_h), x0, x1))
+        )
+        y += step
+
+    return results
+
+
 def clean_name_value(value):
     """Remove label words and retain uppercase name-like words."""
     if not value:
@@ -26,10 +102,22 @@ def clean_name_value(value):
         "STUDENT"
     }
 
+    # Words that mean the name has ended and the next label has begun
+    stop_words = {
+        "BEARING",
+        "REGISTERED",
+        "HAS",
+        "APPEARED",
+        "PASSED"
+    }
+
     clean_words = []
 
     for word in value.replace(",", " ").split():
         word = word.upper().strip(":;,.()[]{}")
+
+        if word in stop_words:
+            break
 
         if word in ignored_words:
             continue
@@ -105,6 +193,72 @@ def extract_value_after_label(text, label_patterns):
                         return value
 
     return None
+
+
+DIGIT_WORDS = {
+    "ZERO": "0", "ONE": "1", "TWO": "2", "THREE": "3", "FOUR": "4",
+    "FIVE": "5", "SIX": "6", "SEVEN": "7", "EIGHT": "8", "NINE": "9"
+}
+
+_WORD = r"(?:ZERO|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE)"
+
+
+def total_from_words(text):
+    """
+    Read a total written as digit-words, e.g. '*NINE**THREE***NINE*' -> '939'.
+    Tries the 'In words' label first, then the star-separated pattern alone.
+    """
+    match = re.search(
+        r"IN\s*WORDS\W{0,10}((?:\W*\b" + _WORD + r"\b)+)",
+        text
+    )
+
+    if not match:
+        match = re.search(
+            r"\*?(" + _WORD + r"(?:\*+" + _WORD + r"){1,3})\*?",
+            text
+        )
+
+    if not match:
+        return None
+
+    words = re.findall(_WORD, match.group(1))
+    digits = "".join(DIGIT_WORDS[word] for word in words)
+
+    return digits if 2 <= len(digits) <= 4 else None
+
+
+def result_from_text(text):
+    """Find a grade result such as 'A GRADE' (OCR may drop the space)."""
+    match = re.search(
+        r"PASSED\W{0,6}(?:\w{0,3}\s+)?(?:IN\s+)?([A-Z]{1,10}?)\s*GRADE\b",
+        text
+    ) or re.search(
+        r"PASSED.{0,20}?\b([A-D])\s*GRADE\b",
+        text
+    ) or re.search(
+        r"\b([A-D])\s*GRADE\b",
+        text
+    )
+
+    if not match:
+        return None
+
+    return f"{match.group(1).strip()} GRADE"
+
+
+def date_from_text(text):
+    """Find a dd-mm-yyyy date, preferring one that follows 'DATE'."""
+    match = re.search(
+        r"(?:DATE|DATED)\W{0,8}"
+        r"(\d{2}\s*[/-]\s*\d{2}\s*[/-]\s*\d{4})",
+        text
+    ) or re.search(
+        r"\b(\d{2}[/-]\d{2}[/-]\d{4})\b",
+        text
+    )
+
+    return re.sub(r"\s+", "", match.group(1)) if match else None
 
 
 def build_table_result(
@@ -347,7 +501,8 @@ def extract_intermediate_fields(
         [
             r"^NAME\s*[:;.]?",
             r"CANDIDATE\s+NAME\s*[:;.]?",
-            r"NAME\s+OF\s+THE\s+CANDIDATE\s*[:;.]?"
+            r"NAME\s+OF\s+THE\s+CANDIDATE\s*[:;.]?",
+            r"CERTIFY\s+THAT\s*[:;.]?"
         ]
     )
 
@@ -379,6 +534,10 @@ def extract_intermediate_fields(
         else None
     )
 
+    # Layouts labelled "Total Marks ... In words" have no "GRAND TOTAL" text
+    if not fields["grand_total"]:
+        fields["grand_total"] = total_from_words(combined_text)
+
     result_match = re.search(
         r"RESULT\s*[:;.]?\s*"
         r"([A-Z]+\s+GRADE|QUALIFIED|PASSED)",
@@ -392,6 +551,10 @@ def extract_intermediate_fields(
         else None
     )
 
+    # Layouts that say "... and passed in A GRADE" instead of "RESULT: ..."
+    if not fields["result"]:
+        fields["result"] = result_from_text(combined_text)
+
     date_match = re.search(
         r"(?:DATE|DATED)\s*[:;.]?\s*"
         r"(\d{2}[/-]\d{2}[/-]\d{4})",
@@ -404,6 +567,28 @@ def extract_intermediate_fields(
         if date_match
         else None
     )
+
+    # Tolerate table-border characters or spaces between the label and date
+    if not fields["exam_date"]:
+        fields["exam_date"] = date_from_text(combined_text)
+
+    # Last resort: text inside table boxes is often skipped by full-page
+    # OCR, so re-read the lower part of the page in thin strips.
+    if image is not None and not all(
+        fields.get(name) for name in ("grand_total", "result", "exam_date")
+    ):
+        strip_text = "\n".join(
+            text for _, text in scan_strips(image, 0.30, 0.90)
+        ).upper()
+
+        if not fields["grand_total"]:
+            fields["grand_total"] = total_from_words(strip_text)
+
+        if not fields["result"]:
+            fields["result"] = result_from_text(strip_text)
+
+        if not fields["exam_date"]:
+            fields["exam_date"] = date_from_text(strip_text)
 
     table_data = extract_marks_table(
         image,

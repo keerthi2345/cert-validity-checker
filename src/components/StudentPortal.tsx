@@ -11,6 +11,7 @@ import {
   Eye, 
   Search, 
   FileCheck2,
+  Trash2,
   Zap
 } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -19,12 +20,14 @@ interface StudentPortalProps {
   documents: StudentDocument[];
   onOpenUploadModal: () => void;
   onSelectDocument: (doc: StudentDocument) => void;
+  onDeleteDocument: (id: string) => Promise<void>;
 }
 
 export const StudentPortal: React.FC<StudentPortalProps> = ({
   documents,
   onOpenUploadModal,
-  onSelectDocument
+  onSelectDocument,
+  onDeleteDocument
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
@@ -48,6 +51,15 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
   const pendingCount = studentDocuments.filter(d => d.status === 'pending').length;
   const suspiciousCount = studentDocuments.filter(d => d.status === 'suspicious').length;
   const rejectedCount = studentDocuments.filter(d => d.status === 'rejected').length;
+
+  const handleDelete = async (doc: StudentDocument) => {
+    if (!window.confirm(`Delete "${doc.title}"? This cannot be undone.`)) return;
+    try {
+      await onDeleteDocument(doc.id);
+    } catch (err: any) {
+      window.alert(err?.message || 'Could not delete the document.');
+    }
+  };
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -83,7 +95,7 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
             </h1>
             
             <p className="text-slate-300 text-sm max-w-2xl leading-relaxed">
-              Upload marksheets, degree certificates, and academic documents for automated verification, OCR entity extraction, structural validation, and forensic analysis.
+              Upload marksheets and academic documents for automated verification, OCR entity extraction, structural validation, and forensic analysis.
             </p>
           </div>
 
@@ -168,7 +180,7 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
             Drag and drop your academic documents here
           </h3>
           <p className="text-xs sm:text-sm text-slate-300 mb-6 max-w-lg leading-relaxed">
-            Supports <strong className="text-emerald-300 font-bold">PDF, JPG, PNG</strong> files up to 25MB. Upload marksheets, degree certificates, migration certificates, and bonafide documents for verification.
+            Supports <strong className="text-emerald-300 font-bold"> JPG, PNG</strong> files up to 25MB.<br></br> Upload marksheets, academic certificates for verification.
           </p>
 
           <button
@@ -342,6 +354,15 @@ export const StudentPortal: React.FC<StudentPortalProps> = ({
                           <Eye className="w-3.5 h-3.5" />
                           <span>View Details</span>
                         </motion.button>
+                        <button
+                          id={`delete-btn-${doc.id}`}
+                          type="button"
+                          title="Delete document"
+                          onClick={() => handleDelete(doc)}
+                          className="p-2 rounded-xl bg-slate-900 hover:bg-rose-500/20 border border-slate-700 hover:border-rose-500/40 text-slate-400 hover:text-rose-300 transition-colors cursor-pointer"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
                       </div>
                     </td>
                   </tr>

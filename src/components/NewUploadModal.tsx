@@ -90,13 +90,13 @@ export const NewUploadModal: React.FC<NewUploadModalProps> = ({
       // Real backend processing is asynchronous (Celery) — poll until it's done,
       // rather than pretending it finished instantly.
       let finalDoc: any = null;
-      const maxAttempts = 30; // up to ~60s
+      const maxAttempts = 90; // up to ~3 minutes (PDF OCR is slower)
       for (let attempt = 0; attempt < maxAttempts; attempt++) {
         await new Promise((r) => setTimeout(r, 2000));
 
-        if (attempt === 2) setProcessingStage(2);
-        if (attempt === 5) setProcessingStage(3);
-        setProgressPercent(Math.min(90, 35 + attempt * 3));
+        if (attempt === 4) setProcessingStage(2);
+        if (attempt === 10) setProcessingStage(3);
+        setProgressPercent(Math.min(90, 35 + attempt));
 
         const detail = await documentService.getDocumentById(documentId);
         if (detail && (detail as any).final_status && (detail as any).final_status !== null) {
@@ -196,7 +196,7 @@ export const NewUploadModal: React.FC<NewUploadModalProps> = ({
                   {file ? file.name : 'Click to select or drag document scan here'}
                 </div>
                 <p className="text-xs text-slate-400">
-                  Accepts PDF, JPG, PNG up to 25MB
+                  Accepts  JPG, PNG up to 25MB
                 </p>
               </label>
 
@@ -226,12 +226,8 @@ export const NewUploadModal: React.FC<NewUploadModalProps> = ({
                   >
                     <option value="10th Marksheet">10th Marksheet</option>
                     <option value="12th Marksheet">12th Marksheet</option>
-                    <option value="Degree Certificate">Degree Certificate</option>
-                    <option value="Migration Certificate">Migration Certificate</option>
-                    <option value="Income Certificate">Income Certificate</option>
-                    <option value="Bonafide Certificate">Bonafide Certificate</option>
-                    <option value="Provisional Certificate">Provisional Certificate</option>
-                    <option value="Academic Transcript">Academic Transcript</option>
+                    <option value="Academic Certificate">Academic Certificate</option>
+                    <option value="Others">Others</option>
                   </select>
                 </div>
 

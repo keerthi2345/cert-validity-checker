@@ -65,7 +65,16 @@ def run_forensics_pipeline(file_path, person3_result):
     try:
         ocr_words = person3_result.get("words", []) if person3_result else []
         logic_check = (person3_result or {}).get("logic_check_result", {}) or {}
-        logic_status = "PASS" if logic_check.get("overall_status") == "PASS" else "FAIL"
+        overall = logic_check.get("overall_status")
+        # PASS    = identity fields + marks reconciled
+        # PARTIAL = identity fields found, marks table not fully reconciled
+        # FAIL    = anything else (NEEDS_REVIEW, missing, extractor crashed)
+        if overall == "PASS":
+            logic_status = "PASS"
+        elif overall == "PARTIAL":
+            logic_status = "PARTIAL"
+        else:
+            logic_status = "FAIL"
         logic_check_result = {"status": logic_status}
 
         result = run_forensics(file_path, ocr_words, logic_check_result)

@@ -202,12 +202,34 @@ def process_document(document_id: str, file_path: str):
 
     except Exception as exc:
         db.rollback()
+        try:
+            doc = (
+                db.query(Document)
+                .filter(Document.document_uid == document_id)
+                .first()
+            )
+            if doc is not None:
+                db.add(VerificationResult(
+                    document_id=doc.id,
+                    ocr_result="{}",
+                    structural_result="{}",
+                    forensic_result="{}",
+                    authenticity_score=0,
+                    final_status="Suspicious",
+                    explanation=(
+                        "Automatic verification could not complete "
+                        f"({exc}). Needs manual review."
+                    ),
+                ))
+                doc.status = "Suspicious"
+                db.commit()
+        except Exception:
+            db.rollback()
 
         return {
             "document_id": document_id,
             "pipeline_status": "failed",
             "error": str(exc)
         }
-
     finally:
         db.close()

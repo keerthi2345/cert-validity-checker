@@ -66,7 +66,12 @@ def detect_signature_region(image, seal_region=None, band_height_ratio=0.15, bot
 def check_font_spacing_consistency(ocr_words):
     """
     Takes a list of OCR word boxes (each with a 'height' key, from Person 3's ocr_module).
-    Flags a document if letter heights vary too much — a sign of inconsistent/edited text.
+    Flags a document if body-text letter heights vary too much — a sign of
+    inconsistent/edited text.
+
+    Certificates naturally mix large headings with small body text, so the
+    verdict uses a TRIMMED spread (middle 80% of heights, ignoring the biggest
+    headings and tiniest marks). The raw spread is still reported for reference.
     """
     heights = [
         w["height"] for w in ocr_words
@@ -76,13 +81,19 @@ def check_font_spacing_consistency(ocr_words):
     if len(heights) < 5:
         return {"consistent": True, "reason": "not enough text detected to judge"}
 
-    mean_h = np.mean(heights)
-    std_h = np.std(heights)
-    coefficient_of_variation = std_h / (mean_h + 1e-6)
+    arr = np.array(heights, dtype=float)
+    raw_cv = arr.std() / (arr.mean() + 1e-6)
+
+    low, high = np.percentile(arr, [10, 90])
+    core = arr[(arr >= low) & (arr <= high)]
+    if len(core) < 5:
+        core = arr
+    trimmed_cv = core.std() / (core.mean() + 1e-6)
 
     return {
-        "consistent": bool(coefficient_of_variation < 0.35),
-        "coefficient_of_variation": round(float(coefficient_of_variation), 3),
+        "consistent": bool(trimmed_cv < 0.40),
+        "coefficient_of_variation": round(float(raw_cv), 3),
+        "trimmed_cv": round(float(trimmed_cv), 3),
     }
 
 def detect_letterhead(image, top_fraction=0.15):

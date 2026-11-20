@@ -1,5 +1,6 @@
 WEIGHTS = {
     "logic_check_fail": 0.25,
+    "logic_check_partial": 0.05,
     "seal_missing": 0.15,
     "signature_missing": 0.10,
     "font_inconsistent": 0.15,
@@ -16,7 +17,12 @@ def compute_score(logic_check_result, structural, ela_result, copy_move_result, 
     penalty = 0.0
     reasons = []
 
-    if logic_check_result.get("status") != "PASS":
+    logic_status = logic_check_result.get("status")
+
+    if logic_status == "PARTIAL":
+        penalty += WEIGHTS["logic_check_partial"]
+        reasons.append("Identity fields were read, but subject marks could not be fully reconciled with the total.")
+    elif logic_status != "PASS":
         penalty += WEIGHTS["logic_check_fail"]
         reasons.append("Field/logic validation failed (e.g. marks or date mismatch).")
 
@@ -53,7 +59,7 @@ def compute_score(logic_check_result, structural, ela_result, copy_move_result, 
         hard_cap = min(hard_cap, 0.60)
     if ela_result["suspicious_regions_present"]:
         hard_cap = min(hard_cap, 0.60)
-    if logic_check_result.get("status") != "PASS":
+    if logic_status not in ("PASS", "PARTIAL"):
         hard_cap = min(hard_cap, 0.60)
 
     score = min(score, hard_cap)

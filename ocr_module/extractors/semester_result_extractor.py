@@ -46,6 +46,82 @@ HEADER_KEYWORDS = [
 ]
 
 
+def _to_gray(image):
+    if image is None:
+        return None
+
+    if image.ndim == 3:
+        return cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    return image
+
+
+def ocr_band(gray, y0, y1, x0, x1, psm="7", whitelist=None, scale=3):
+    """OCR one horizontal band of the page (all bounds are page fractions)."""
+    height, width = gray.shape[:2]
+
+    top, bottom = int(height * y0), int(height * y1)
+    left, right = int(width * x0), int(width * x1)
+
+    if bottom <= top or right <= left:
+        return ""
+
+    crop = cv2.resize(
+        gray[top:bottom, left:right],
+        None,
+        fx=scale,
+        fy=scale,
+        interpolation=cv2.INTER_CUBIC
+    )
+
+    _, crop = cv2.threshold(
+        crop,
+        0,
+        255,
+        cv2.THRESH_BINARY + cv2.THRESH_OTSU
+    )
+
+    config = f"--psm {psm}"
+
+    if whitelist:
+        config += f" -c tessedit_char_whitelist={whitelist}"
+
+    try:
+        return pytesseract.image_to_string(crop, config=config).strip()
+    except Exception:
+        return ""
+
+
+def scan_strips(
+    image,
+    y_start,
+    y_end,
+    strip_h=0.03,
+    step=0.015,
+    x0=0.08,
+    x1=0.94
+):
+    """
+    Read a page region as thin overlapping text strips. Strips work on
+    text inside table boxes, which full-page OCR often skips.
+    """
+    gray = _to_gray(image)
+
+    if gray is None:
+        return []
+
+    results = []
+    y = y_start
+
+    while y < y_end:
+        results.append(
+            (y, ocr_band(gray, y, min(1.0, y + strip_h), x0, x1))
+        )
+        y += step
+
+    return results
+
+
 def clean_text(text):
     if not text:
         return ""
@@ -246,6 +322,80 @@ def extract_gpa_from_crop(image, words, image_width):
     return result
 
 
+def name_from_strips(image):
+    """Re-read the header strips and pick the most common candidate name."""
+    votes = {}
+
+    for _, text in scan_strips(
+        image, 0.08, 0.32, strip_h=0.035, step=0.012, x0=0.04, x1=0.98
+    ):
+        match = re.search(
+            r"CANDIDATE\s*[:;.\-]*\s*([A-Z][A-Z ]{3,60})",
+            text.upper()
+        )
+
+        if not match:
+            continue
+
+        name = clean_name(match.group(1))
+
+        if name and len(name.split()) >= 2:
+            votes[name] = votes.get(name, 0) + 1
+
+    if not votes:
+        return None
+
+    return max(votes, key=votes.get)
+
+
+def register_number_from_strips(image):
+    """
+    Find the 'REGISTER NUMBER' line, then read the number with digits-only
+    OCR over several crops and keep the value most crops agree on. A single
+    crop is unreliable, so a number needs at least 2 matching reads.
+    """
+    gray = _to_gray(image)
+
+    if gray is None:
+        return None
+
+    bands = [
+        y
+        for y, text in scan_strips(
+            image, 0.08, 0.32, strip_h=0.035, step=0.012, x0=0.04, x1=0.98
+        )
+        if "REGISTER" in text.upper() or "NUMBER" in text.upper()
+    ][:2]
+
+    votes = {}
+
+    for y in bands:
+        for height in (0.025, 0.035):
+            for shift in (0.0, 0.005):
+                for x_start in (0.55, 0.62, 0.70, 0.78):
+                    text = ocr_band(
+                        gray,
+                        max(0.0, y + shift),
+                        min(1.0, y + shift + height),
+                        x_start,
+                        0.97,
+                        whitelist="0123456789"
+                    )
+
+                    for token in re.findall(r"(?:\d\s?){9,15}", text):
+                        digits = re.sub(r"\D", "", token)
+
+                        if 9 <= len(digits) <= 15:
+                            votes[digits] = votes.get(digits, 0) + 1
+
+    if not votes:
+        return None
+
+    best = max(votes, key=votes.get)
+
+    return best if votes[best] >= 2 else None
+
+
 def extract_subjects(reconstructed_text):
     """
     Extract only valid subject rows from reconstructed OCR text.
@@ -416,13 +566,30 @@ def extract_semester_result_fields(
         re.IGNORECASE
     )
 
-    if name_match:
+    # Layout 1: the name follows the label on the same line:
+    #   "NAME OF THE CANDIDATE : <NAME>"
+    # This is tried first because it is unambiguous.
+    after_label = re.search(
+        r"NAME\s+OF\s+THE\s+CANDIDATE\s*[:;.\-]*\s*"
+        r"([A-Z][A-Z ]{3,60})",
+        combined_text
+    )
+
+    fields["name"] = (
+        clean_name(after_label.group(1))
+        if after_label
+        else None
+    )
+
+    # Layout 2: the name sits on the line before the label.
+    if not fields["name"] and name_match:
         fields["name"] = clean_name(
             name_match.group(1)
         )
 
-    else:
-        fields["name"] = None
+    # Last resort: re-read the header in thin strips.
+    if not fields["name"] and image is not None:
+        fields["name"] = name_from_strips(image)
 
     register_match = re.search(
         r"REGISTER\s+NUMBER\s*[:;]?\s*(\d{8,15})",
@@ -447,8 +614,23 @@ def extract_semester_result_fields(
                 fields["register_number"] = number
                 break
 
+    if not fields["register_number"]:
+        loose_register = re.search(
+            r"REGISTER\s*NUMBER\D{0,12}((?:\d\s?){9,15})",
+            combined_text
+        )
+
+        if loose_register:
+            digits = re.sub(r"\D", "", loose_register.group(1))
+
+            if 9 <= len(digits) <= 15:
+                fields["register_number"] = digits
+
+    if not fields["register_number"]:
+        fields["register_number"] = register_number_from_strips(image)
+
     branch_match = re.search(
-        r"BRANCH\s+NAME\s*[:;]?\s*([A-Z\s&]+)",
+        r"BRANCH\s+NAME\s*[:;]?\s*([A-Z &]+)",
         combined_text,
         re.IGNORECASE
     )

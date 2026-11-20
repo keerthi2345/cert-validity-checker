@@ -28,5 +28,13 @@ export const documentService = {
         // Let browser set multipart boundary
       }
     });
-  }
+  },
+
+  async deleteDocument(id: string): Promise<void> {
+    await apiRequest<unknown>(`/api/v1/documents/${id}`, { method: 'DELETE' });
+  },
+
+  async adminDeleteDocument(id: string): Promise<void> {
+    await apiRequest<unknown>(`/api/v1/documents/admin/${id}`, { method: 'DELETE' });
+  },
 };

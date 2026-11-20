@@ -30,6 +30,11 @@ export default function App() {
     setDocuments((prev) => [newDoc, ...prev]);
   };
 
+  const handleDeleteDocument = async (id: string) => {
+    await documentService.deleteDocument(id);
+    setDocuments((prev) => prev.filter((d) => d.id !== id));
+  };
+
   return (
     <AuthProvider>
       <BrowserRouter>
@@ -58,6 +63,7 @@ export default function App() {
                 <StudentDashboardPage
                   documents={documents}
                   onUploadSuccess={handleUploadSuccess}
+                  onDeleteDocument={handleDeleteDocument}
                 />
               </ProtectedRoute>
             }
@@ -69,6 +75,7 @@ export default function App() {
                 <StudentDashboardPage
                   documents={documents}
                   onUploadSuccess={handleUploadSuccess}
+                  onDeleteDocument={handleDeleteDocument}
                 />
               </ProtectedRoute>
             }
@@ -80,6 +87,7 @@ export default function App() {
                 <StudentDashboardPage
                   documents={documents}
                   onUploadSuccess={handleUploadSuccess}
+                  onDeleteDocument={handleDeleteDocument}
                 />
               </ProtectedRoute>
             }

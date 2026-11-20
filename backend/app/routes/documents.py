@@ -1,5 +1,8 @@
 import os
 import uuid
+from pathlib import Path
+from app.models.verification_result import VerificationResult
+from app.models.audit_log import AuditLog
 
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 from sqlalchemy.orm import Session
@@ -152,3 +155,58 @@ def get_document_status(
         "status": document.status,
         "uploaded_at": document.uploaded_at
     }
+
+def _remove_document(db: Session, document: Document):
+    file_path = document.file_path
+    db.query(VerificationResult).filter(VerificationResult.document_id == document.id).delete()
+    db.query(AuditLog).filter(AuditLog.document_id == document.id).delete()
+    db.delete(document)
+    db.commit()
+
+    # remove files only after the database delete succeeded
+    if file_path and os.path.exists(file_path):
+        os.remove(file_path)
+    if file_path:
+        stem = Path(file_path).resolve()
+        temp_dir = stem.parent.parent / "temp_ocr_input"
+        for extra in temp_dir.glob(f"{stem.stem}*"):
+            try:
+                extra.unlink()
+            except OSError:
+                pass
+
+
+@router.delete("/{document_id}")
+def delete_my_document(
+    document_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role("student"))
+):
+    student = db.query(Student).filter(Student.user_id == current_user.id).first()
+    if student is None:
+        raise HTTPException(status_code=400, detail="Student profile not found")
+
+    document = (
+        db.query(Document)
+        .filter(Document.document_uid == document_id, Document.student_id == student.id)
+        .first()
+    )
+    if document is None:
+        raise HTTPException(status_code=404, detail="Document not found")
+
+    _remove_document(db, document)
+    return {"document_id": document_id, "message": "Document deleted"}
+
+
+@router.delete("/admin/{document_id}")
+def delete_document_as_admin(
+    document_id: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role("admin"))
+):
+    document = db.query(Document).filter(Document.document_uid == document_id).first()
+    if document is None:
+        raise HTTPException(status_code=404, detail="Document not found")
+
+    _remove_document(db, document)
+    return {"document_id": document_id, "message": "Document deleted"}

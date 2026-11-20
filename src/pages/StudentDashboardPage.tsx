@@ -11,11 +11,13 @@ import { mapVerificationDetail } from '../services/adapters';
 interface StudentDashboardPageProps {
   documents: StudentDocument[];
   onUploadSuccess: (newDoc: StudentDocument) => void;
+  onDeleteDocument: (id: string) => Promise<void>;
 }
 
 export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({
   documents,
-  onUploadSuccess
+  onUploadSuccess,
+  onDeleteDocument
 }) => {
   const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
@@ -77,6 +79,7 @@ export const StudentDashboardPage: React.FC<StudentDashboardPageProps> = ({
           documents={documents}
           onOpenUploadModal={() => setUploadModalOpen(true)}
           onSelectDocument={handleSelectDocument}
+          onDeleteDocument={onDeleteDocument}
         />
       </main>
 

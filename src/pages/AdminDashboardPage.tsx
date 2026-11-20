@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { StudentDocument, VerificationStatus } from '../types';
+import { documentService } from '../services/documentService';
 import { 
   getVerificationQueue, 
   computeAdminStats, 
@@ -22,6 +23,7 @@ import {
   AlertCircle,
   Eye,
   SlidersHorizontal,
+  Trash2,
   GraduationCap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -56,6 +58,18 @@ export const AdminDashboardPage: React.FC = () => {
       setErrorMessage(err.message || 'Unable to load verification data. Please try again.');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDelete = async (doc: StudentDocument) => {
+    if (!window.confirm(`Delete ${doc.fileName}? This cannot be undone.`)) return;
+    try {
+      await documentService.adminDeleteDocument(doc.id);
+      const remaining = documents.filter((d) => d.id !== doc.id);
+      setDocuments(remaining);
+      setStats(computeAdminStats(remaining));
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Could not delete the document.');
     }
   };
 
@@ -479,14 +493,25 @@ export const AdminDashboardPage: React.FC = () => {
 
                       {/* Review Button */}
                       <td className="py-3.5 px-4 text-right whitespace-nowrap">
-                        <Link
-                          id={`btn-review-${doc.id}`}
-                          to={`/admin/review/${doc.id}`}
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-400 hover:to-teal-400 text-slate-950 font-black text-xs shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
-                        >
-                          <Eye className="w-3.5 h-3.5 stroke-[2.5]" />
-                          <span>Review</span>
-                        </Link>
+                        <div className="flex items-center justify-end gap-2">
+                          <Link
+                            id={`btn-review-${doc.id}`}
+                            to={`/admin/review/${doc.id}`}
+                            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-400 hover:to-teal-400 text-slate-950 font-black text-xs shadow-md shadow-cyan-500/20 transition-all cursor-pointer"
+                          >
+                            <Eye className="w-3.5 h-3.5 stroke-[2.5]" />
+                            <span>Review</span>
+                          </Link>
+                          <button
+                            id={`btn-delete-${doc.id}`}
+                            type="button"
+                            onClick={() => handleDelete(doc)}
+                            title="Delete document"
+                            className="p-2 rounded-xl bg-slate-900 hover:bg-rose-500/20 border border-slate-800 hover:border-rose-500/40 text-slate-400 hover:text-rose-300 transition-colors cursor-pointer"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
